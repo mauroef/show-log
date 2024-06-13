@@ -1,4 +1,13 @@
-export const PROJECT_NAME = 'ShowLog';
-export const BASE_URL_API = 'https://api.themoviedb.org/3/';
-export const BASE_URL_TEASER_IMAGE =
-  'https://image.tmdb.org/t/p/w250_and_h141_face';
+const PROJECT_NAME = 'ShowLog';
+const API = {
+  BASE_URL: 'https://api.themoviedb.org/3/',
+};
+const IMAGE_URLS = {
+  BASE_TEASER: 'https://image.tmdb.org/t/p/w250_and_h141_face',
+  BASE_LEAD: 'https://image.tmdb.org/t/p/w1280',
+};
+const VIDEO_URLS = {
+  YOUTUBE: 'https://www.youtube.com/watch?v=',
+};
+
+export { PROJECT_NAME, API, IMAGE_URLS, VIDEO_URLS };

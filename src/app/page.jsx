@@ -1,17 +1,26 @@
 import MainLayout from '@/components/layout/MainLayout';
 import MovieList from '@/components/movie/MovieList';
-import { getPopularMovies } from '@/utils/api';
+import MovieSlider from '@/components/movie/MovieSlider';
+import { getMostVotedMovies } from '@/utils/api';
+import { getVideos } from '@/utils/helpers';
+
+const MostVotedMovies = async () => {
+  const movies = await getMostVotedMovies();
+
+  return <MovieList movies={movies} />;
+};
 
 const PopularMovies = async () => {
-  const popular = await getPopularMovies();
+  const movies = await getVideos();
 
-  return <MovieList movies={popular} />;
-};
+  return <MovieSlider movies={movies} />;
+}
 
 const HomePage = () => {
   return (
     <MainLayout>
       <PopularMovies />
+      <MostVotedMovies />
     </MainLayout>
   );
 };

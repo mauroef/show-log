@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { BASE_URL_TEASER_IMAGE } from '@/utils/constants';
+import { IMAGE_URLS } from '@/utils/constants';
 
 const MovieCard = ({ backdrop_path, poster_path, title }) => {
   return (
@@ -10,7 +10,7 @@ const MovieCard = ({ backdrop_path, poster_path, title }) => {
             alt={title}
             className='object-cover rounded-xl'
             height={141}
-            src={`${BASE_URL_TEASER_IMAGE}${poster_path}`}
+            src={`${IMAGE_URLS.BASE_TEASER}${poster_path}`}
             width={250}
           />
         </div>
