@@ -6,9 +6,11 @@ import ReactPlayer from 'react-player';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { IMAGE_URLS, VIDEO_URLS } from '@/utils/constants';
+import useIsMobile from '@/hooks/useIsMobile';
 import styles from './movie.module.css';
 
 const MovieSlider = ({ movies }) => {
+  const isMobile = useIsMobile();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [playTrailer, setPlayTrailer] = useState(false);
 
@@ -59,7 +61,7 @@ const MovieSlider = ({ movies }) => {
               alt={movie.title}
               className={styles['player-image']}
               fill
-              src={`${IMAGE_URLS.BASE_LEAD}${movie.poster}`}
+              src={`${IMAGE_URLS.BASE_LEAD}${isMobile ? movie.image.portrait : movie.image.landscape}`}
             />
           ) : (
             <ReactPlayer

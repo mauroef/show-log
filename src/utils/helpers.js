@@ -10,7 +10,10 @@ export const getVideos = async (limit = 8) => {
     videos.push({
       title: movie.title,
       id: movie.id,
-      poster: movie.poster_path,
+      image: {
+        landscape: movie.backdrop_path,
+        portrait:  movie.poster_path
+      },
       video: videoData,
     });
   }
