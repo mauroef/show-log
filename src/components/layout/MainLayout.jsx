@@ -1,4 +1,4 @@
-import Header from '../common/Header';
+import { Header } from '@/components';
 import styles from './layout.module.css';
 
 const MainLayout = ({ children }) => {

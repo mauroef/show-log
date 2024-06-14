@@ -16,6 +16,7 @@ const nextConfig = {
       }
     ],
   },
+  reactStrictMode: false // changed to true on production environment
 };
 
 export default nextConfig;
