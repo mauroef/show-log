@@ -9,5 +9,8 @@ const IMAGE_URLS = {
 const VIDEO_URLS = {
   YOUTUBE: 'https://www.youtube.com/watch?v=',
 };
+const SLIDER = {
+    SWITCH_TO_VIDEO_DURATION: 5000
+}
 
-export { PROJECT_NAME, API, IMAGE_URLS, VIDEO_URLS };
+export { PROJECT_NAME, API, IMAGE_URLS, VIDEO_URLS, SLIDER };

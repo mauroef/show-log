@@ -11,14 +11,14 @@ import {
   IoVolumeMuteOutline,
   IoVolumeHighOutline,
 } from 'react-icons/io5';
-import { IMAGE_URLS, VIDEO_URLS } from '@/utils/constants';
+import { IMAGE_URLS, SLIDER, VIDEO_URLS } from '@/utils/constants';
 import useIsMobile from '@/hooks/useIsMobile';
 import styles from './movie.module.css';
 
 const MovieSlider = ({ movies }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [playTrailer, setPlayTrailer] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false); // cambiar despues a true
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const isMobile = useIsMobile();
   const sliderRef = useRef(null);
@@ -28,7 +28,7 @@ const MovieSlider = ({ movies }) => {
     const timer = setTimeout(() => {
       setPlayTrailer(true);
       setIsPlaying(true);
-    }, 5000);
+    }, SLIDER.SWITCH_TO_VIDEO_DURATION);
 
     return () => {
       clearTimeout(timer);
@@ -46,6 +46,7 @@ const MovieSlider = ({ movies }) => {
   const settings = {
     arrows: false,
     dots: true,
+    infinite: false,
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -84,14 +85,7 @@ const MovieSlider = ({ movies }) => {
   return (
     <Slider ref={sliderRef} {...settings}>
       {movies.map((movie, index) => (
-        <motion.div
-          key={movie.id}
-          className={styles['player-wrapper']}
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -50 }}
-          transition={{ duration: 0.5 }}
-        >
+        <motion.div key={movie.id} className={`${styles['player-wrapper']} 2xl:rounded-b-2xl`}>
           <motion.div
             initial={{ opacity: 1, scale: 1 }}
             animate={{
@@ -99,7 +93,7 @@ const MovieSlider = ({ movies }) => {
               scale: playTrailer && currentSlide === index ? 1.3 : 1,
             }}
             transition={{ duration: 0.5 }}
-            className={styles['image-wrapper']}
+            className={`${styles['image-wrapper']} 2xl:rounded-b-2xl`}
           >
             <Image
               alt={movie.title}
@@ -109,6 +103,11 @@ const MovieSlider = ({ movies }) => {
                 isMobile ? movie.image.portrait : movie.image.landscape
               }`}
             />
+            {!isMobile && (
+              <div className={styles['image__title']}>
+                <h2>{movie.title || ''}</h2>
+              </div>
+            )}
           </motion.div>
           {playTrailer && currentSlide === index && (
             <motion.div
@@ -117,7 +116,6 @@ const MovieSlider = ({ movies }) => {
               transition={{ duration: 0.5 }}
               className={styles['video-wrapper']}
             >
-              {console.log('video intace', movie.title)}
               <ReactPlayer
                 ref={playerRef}
                 className={styles['react-player']}
@@ -130,7 +128,7 @@ const MovieSlider = ({ movies }) => {
                 url={`${VIDEO_URLS.YOUTUBE}${movie.video.key}?controls=0&modestbranding=1&rel=0&iv_load_policy=3`}
                 width='100%'
               />
-              <div className={styles['controls']}>
+              <div className={styles['video__controls']}>
                 <button onClick={togglePlayPause}>
                   {isPlaying ? (
                     <IoPauseCircleOutline />
