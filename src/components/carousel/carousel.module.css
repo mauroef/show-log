@@ -1,0 +1,9 @@
+.carousel__item {
+  background: red;
+  display: grid;
+  grid-column: 1fr 1fr 1fr 1fr;
+}
+.carousel__image {
+  aspect-ratio: 16/9;
+  width: 100%;
+}

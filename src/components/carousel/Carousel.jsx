@@ -5,10 +5,16 @@ import Image from 'next/image';
 import styles from './carousel.module.css';
 import { IMAGE_URLS } from '@/utils/constants';
 
-const Carousel = ({ title, mediaItems }) => {
+const Carousel = ({
+  hasDescription,
+  hasGenre,
+  hasTitle,
+  mediaItems,
+  headline,
+}) => {
   const settings = {
-    dots: true,
-    infinite: true,
+    dots: false,
+    infinite: false,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 5,
@@ -41,21 +47,22 @@ const Carousel = ({ title, mediaItems }) => {
 
   return (
     <div className={styles.carousel}>
+      <h2>{headline}</h2>
       <Slider {...settings}>
-        <h3>{title}</h3>
+        {console.log({ mediaItems })}
         {mediaItems.length > 0 &&
           mediaItems.map((item) => (
-            <div key={item.id} className={styles.slide}>
+            <div key={item.id} className={styles['carousel__item']}>
               <Image
                 alt={item.title}
-                className={styles.image}
-                layout='fill'
-                objectFit='cover'
-                src={`${IMAGE_URLS.BASE_LEAD}${item.poster}`}
+                className={styles['carousel__image']}
+                height={141}
+                width={250}
+                src={`${IMAGE_URLS.BASE_TEASER}${item['backdrop_path']}`}
               />
-              <div className={styles.title}>
-                <h3>{item.title}</h3>
-              </div>
+              {hasGenre && item['genre_ids'][0]}
+              {hasTitle && <h3>{item.title}</h3>}
+              {hasDescription && <p>{item.overview}</p>}
             </div>
           ))}
       </Slider>

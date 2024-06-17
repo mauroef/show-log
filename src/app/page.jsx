@@ -11,7 +11,15 @@ const PopularMovies = async () => {
 const MostVotedMovies = async () => {
   const movies = await getMostVotedMovies();
 
-  return <Carousel title='Most votes Movies' mediaItems={movies} />;
+  return (
+    <Carousel
+      title='Most votes Movies'
+      mediaItems={movies}
+      hasGenre={true}
+      hasDescription={true}
+      hasTitle={true}
+    />
+  );
 };
 
 const HomePage = () => {
