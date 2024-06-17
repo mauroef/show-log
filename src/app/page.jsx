@@ -13,7 +13,7 @@ const MostVotedMovies = async () => {
 
   return (
     <Carousel
-      title='Most votes Movies'
+      headline='Most votes Movies'
       mediaItems={movies}
       hasGenre={true}
       hasDescription={true}

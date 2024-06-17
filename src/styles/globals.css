@@ -29,6 +29,10 @@
   height: auto;
 }
 
+.slick-arrow::before {
+  content: '';
+}
+
 /* General */
 body {
   background-color: #2d2d2d;

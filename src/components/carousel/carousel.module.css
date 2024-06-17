@@ -1,9 +1,27 @@
+.carousel .slick-list {
+  padding: 0 20px;
+}
 .carousel__item {
   background: red;
-  display: grid;
-  grid-column: 1fr 1fr 1fr 1fr;
+  margin: 0 10px 0 0;
 }
+
 .carousel__image {
   aspect-ratio: 16/9;
-  width: 100%;
+}
+
+.custom-arrow {
+  color: white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  
+}
+
+.custom-arrow__prev {
+  left: -30px;
+}
+
+.custom-arrow__next {
+  right: -30px;
 }
