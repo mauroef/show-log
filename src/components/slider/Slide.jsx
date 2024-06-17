@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { IMAGE_URLS } from '@/utils/constants';
 import VideoPlayer from './VideoPlayer';
-import styles from './media.module.css';
+import styles from './slider.module.css';
 
 const Slide = ({
   item,

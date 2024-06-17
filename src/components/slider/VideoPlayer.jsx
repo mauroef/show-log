@@ -2,7 +2,7 @@ import ReactPlayer from 'react-player';
 import { motion } from 'framer-motion';
 import Controls from './Controls';
 import { VIDEO_URLS } from '@/utils/constants';
-import styles from './media.module.css';
+import styles from './slider.module.css';
 
 const VideoPlayer = ({
   item,

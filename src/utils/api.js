@@ -1,12 +1,10 @@
 import { API } from './constants';
 
-const AUTH_KEY = process.env.TMDB_AUTH_KEY;
-
 const OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: `Bearer ${AUTH_KEY}`,
+    Authorization: `Bearer ${API.AUTH_KEY}`,
   },
 };
 
@@ -49,6 +47,7 @@ export const getMovieVideoById = async (movieId) => {
 }
 
 export const getPopularMovies = async () => {
+  console.log({foo: `${API.AUTH_KEY}`});
   const queryParams = 'language=en-US&page=1';
 
   try {

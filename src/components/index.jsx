@@ -1,5 +1,11 @@
+// layout
+export { default as MainLayout } from './layout/MainLayout';
+
+// common
 export { default as Header } from './common/Header';
 
-export { default as MediaSlider } from './mediaSlider/MediaSlider';
+// slider
+export { default as Slider } from './slider/Slider';
 
+// carousel
 export { default as Carousel } from './carousel/Carousel';

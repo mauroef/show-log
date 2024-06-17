@@ -1,14 +1,14 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Slider from 'react-slick';
+import { default as SlickSlider } from 'react-slick';
 import { motion } from 'framer-motion';
 import useIsMobile from '@/hooks/useIsMobile';
 import { SLIDER } from '@/utils/constants';
 import Slide from './Slide';
-import styles from './media.module.css';
+import styles from './slider.module.css';
 
-const MediaSlider = ({ mediaItems }) => {
+const Slider = ({ mediaItems }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [playTrailer, setPlayTrailer] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -20,7 +20,7 @@ const MediaSlider = ({ mediaItems }) => {
     const timer = setTimeout(() => {
       setPlayTrailer(true);
       setIsPlaying(true);
-    }, SLIDER.SWITCH_TO_VIDEO_DURATION);
+    }, SLIDER.SWITCH_TO_VIDEO_DURATION || 5000);
 
     return () => {
       clearTimeout(timer);
@@ -67,7 +67,7 @@ const MediaSlider = ({ mediaItems }) => {
   };
 
   return (
-    <Slider ref={sliderRef} {...settings}>
+    <SlickSlider ref={sliderRef} {...settings}>
       {mediaItems.map((item, index) => (
         <Slide
           key={item.id}
@@ -82,8 +82,8 @@ const MediaSlider = ({ mediaItems }) => {
           toggleMute={() => setIsMuted((prev) => !prev)}
         />
       ))}
-    </Slider>
+    </SlickSlider>
   );
 };
 
-export default MediaSlider;
+export default Slider;

@@ -4,7 +4,7 @@ import {
   IoVolumeMuteOutline,
   IoVolumeHighOutline,
 } from 'react-icons/io5';
-import styles from './media.module.css';
+import styles from './slider.module.css';
 
 const Controls = ({ isPlaying, isMuted, togglePlayPause, toggleMute }) => (
   <div className={styles['video__controls']}>
