@@ -39,6 +39,7 @@ const Slider = ({ mediaItems }) => {
     arrows: false,
     dots: true,
     infinite: false,
+    lazyLoad: true,
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,

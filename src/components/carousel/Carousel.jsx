@@ -17,6 +17,7 @@ const Carousel = ({
     arrows: true,
     dots: false,
     infinite: false,
+    lazyLoad: true,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 5,

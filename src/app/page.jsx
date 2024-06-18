@@ -25,6 +25,7 @@ const MostVotedMovies = async () => {
 const HomePage = () => {
   return (
     <MainLayout>
+      {/* set conditinal util components are loaded */}
       <PopularMovies />
       <MostVotedMovies />
     </MainLayout>
