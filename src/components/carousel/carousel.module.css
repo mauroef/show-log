@@ -1,8 +1,8 @@
-.carousel .slick-list {
-  padding: 0 20px;
+.custom-arrow {
+  display: none;
 }
+
 .carousel__item {
-  background: red;
   margin: 0 10px 0 0;
 }
 
@@ -10,12 +10,8 @@
   aspect-ratio: 16/9;
 }
 
-.custom-arrow {
-  color: white;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  
+.custom-arrow:disabled {
+  opacity: 0.7;
 }
 
 .custom-arrow__prev {
@@ -24,4 +20,35 @@
 
 .custom-arrow__next {
   right: -30px;
+}
+
+@media (min-width: 768px) {
+  .carousel > div::before,
+  .carousel > div::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    pointer-events: none;
+    z-index: 9;
+  }
+
+  .carousel > div::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(45, 45, 45, 0.7), rgba(45, 45, 45, 0));
+  }
+
+  .carousel > div::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(45, 45, 45, 0.7), rgba(45, 45, 45, 0));
+  }
+
+  .custom-arrow {
+    color: white;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }

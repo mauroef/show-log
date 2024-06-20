@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Slider from 'react-slick';
 import Image from 'next/image';
 import { PrevArrow, NextArrow } from './CustomArrow';
@@ -13,16 +14,20 @@ const Carousel = ({
   mediaItems,
   headline,
 }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const settings = {
     arrows: true,
     dots: false,
+    draggable: false,
     infinite: false,
     lazyLoad: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 5,
     slidesToScroll: 5,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    beforeChange: (oldIndex, newIndex) => setCurrentIndex(newIndex),
+    prevArrow: <PrevArrow disabled={currentIndex === 0} />,
+    nextArrow: <NextArrow disabled={currentIndex >= mediaItems.length - 5} />,
     responsive: [
       {
         breakpoint: 1280,
@@ -36,6 +41,8 @@ const Carousel = ({
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
+          draggable: true,
+          arrows: false,
         },
       },
       {
@@ -43,22 +50,17 @@ const Carousel = ({
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
+          draggable: true,
+          arrows: false,
         },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
+      }
     ],
   };
 
   return (
-    <div className={`mx-10`}>
-      <h2 className="text-2xl font-bold mb-4">{headline}</h2>
-      <Slider {...settings} className={`${styles['carousel__slider']}`}>
+    <div className={`mx-6 md:mx-10`}>
+      <h2 className='text-2xl font-bold px-2.5 py-3 text-white'>{headline}</h2>
+      <Slider {...settings} className={`${styles['carousel']}`}>
         {mediaItems.length > 0 &&
           mediaItems.map((item) => (
             <div key={item.id} className={`${styles['carousel__item']} px-2.5`}>
@@ -69,9 +71,15 @@ const Carousel = ({
                 width={228}
                 src={`${IMAGE_URLS.BASE_TEASER}${item['backdrop_path']}`}
               />
-              {hasGenre && <div className="text-sm text-gray-600">{item['genre_ids'][0]}</div>}
-              {hasTitle && <h3 className="text-lg font-semibold">{item.title}</h3>}
-              {hasDescription && <p className="text-sm">{item.overview}</p>}
+              {hasGenre && (
+                <div className='text-sm text-gray-600'>
+                  {item['genre_ids'][0]}
+                </div>
+              )}
+              {hasTitle && (
+                <h3 className='text-lg font-semibold text-white'>{item.title}</h3>
+              )}
+              {hasDescription && <p className='text-sm line-clamp-3 text-white'>{item.overview}</p>}
             </div>
           ))}
       </Slider>

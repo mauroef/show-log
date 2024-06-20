@@ -1,3 +1,6 @@
+.slider {
+    aspect-ratio: 733/916;
+}
 .player-wrapper {
     background-color: black;
     overflow: hidden;
@@ -69,6 +72,9 @@
 }
 
 @media (min-width: 768px) {
+    .slider {
+        aspect-ratio: 1280/720;
+    }
     .player-wrapper {
         /* 16:9 aspect ratio */
         padding: 56.25% 0 0;

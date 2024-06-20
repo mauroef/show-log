@@ -68,7 +68,7 @@ const Slider = ({ mediaItems }) => {
   };
 
   return (
-    <SlickSlider ref={sliderRef} {...settings}>
+    <SlickSlider ref={sliderRef} {...settings} className={styles.slider}>
       {mediaItems.map((item, index) => (
         <Slide
           key={item.id}
