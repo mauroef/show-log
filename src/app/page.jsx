@@ -1,5 +1,5 @@
-import { Carousel, MainLayout, Slider } from '@/components/';
-import { getMostVotedMovies } from '@/utils/api';
+import { Carousel, Divider, MainLayout, Slider } from '@/components/';
+import { getMostVotedMovies, getMostVotedShows } from '@/utils/api';
 import { getVideos } from '@/utils/helpers';
 
 const PopularMovies = async () => {
@@ -13,8 +13,25 @@ const MostVotedMovies = async () => {
 
   return (
     <Carousel
-      headline='Most votes Movies'
+      headline='Most voted Movies'
       mediaItems={movies}
+      hasGenre={true}
+      hasDescription={true}
+      hasTitle={true}
+    />
+  );
+};
+
+const MostVotedShows = async () => {
+  let shows = await getMostVotedShows();
+
+  if (!shows.title) {
+    shows = shows.map(s => ({ ...s, title: s.original_name }));
+  }
+  return (
+    <Carousel
+      headline='Most voted Shows'
+      mediaItems={shows}
       hasGenre={true}
       hasDescription={true}
       hasTitle={true}
@@ -25,9 +42,10 @@ const MostVotedMovies = async () => {
 const HomePage = () => {
   return (
     <MainLayout>
-      {/* set conditinal util components are loaded */}
       <PopularMovies />
       <MostVotedMovies />
+      <Divider />
+      <MostVotedShows />
     </MainLayout>
   );
 };

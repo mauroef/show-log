@@ -5,7 +5,7 @@ export { default as MainLayout } from './layout/MainLayout';
 export { default as Header } from './common/Header';
 
 // ui
-export {default as Divider } from './ui/Divider';
+export { default as Divider } from './ui/Divider';
 
 // slider
 export { default as Slider } from './slider/Slider';
