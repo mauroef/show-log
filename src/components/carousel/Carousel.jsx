@@ -59,7 +59,7 @@ const Carousel = ({
 
   return (
     <div className={`mx-6 md:mx-10`}>
-      <h2 className='text-2xl font-bold px-2.5 py-3 text-white'>{headline}</h2>
+      <h2 className='text-2xl font-bold px-2.5 py-3 text-white/90'>{headline}</h2>
       <Slider {...settings} className={`${styles['carousel']} pb-3`}>
         {mediaItems.length > 0 &&
           mediaItems.map((item, index) => (
@@ -69,27 +69,27 @@ const Carousel = ({
             >
               <Image
                 alt={item.title}
-                className={`${styles['carousel__image']} rounded-xl mb-2`}
+                className={`${styles['carousel__image']} rounded-xl mb-2 shadow-lg`}
                 height={128.25}
                 width={228}
                 src={`${IMAGE_URLS.BASE_TEASER}${item['backdrop_path']}`}
                 priority={index === 0}
               />
               {hasGenre && (
-                <div className='text-sm text-gray-600'>
-                  {item['genre_ids'][0]}
+                <div className='text-xs text-white/70 uppercase font-bold'>
+                  {item['genre_name']}
                 </div>
               )}
               {hasTitle && (
                 <h3
                   title={item.title}
-                  className='text-lg font-semibold text-white font-normal line-clamp-1'
+                  className='text-lg font-semibold/70 text-white/70 font-normal line-clamp-1'
                 >
                   {item.title}
                 </h3>
               )}
               {hasDescription && (
-                <p className='text-sm line-clamp-3 text-white font-light'>
+                <p className='text-sm line-clamp-3 text-white/70 font-light'>
                   {item.overview}
                 </p>
               )}

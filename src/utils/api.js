@@ -77,7 +77,7 @@ export const getPopularMovies = async () => {
 };
 
 export const getMovieGenres = async () => {
-  const queryParams = '?language=en-US';
+  const queryParams = '?language=en';
 
   try {
     const response = await fetch(
@@ -91,7 +91,7 @@ export const getMovieGenres = async () => {
 
     const data = await response.json();
 
-    return data.results;
+    return data.genres;
   } catch (error) {
     console.error('Error fetching movie genres:', error);
 
@@ -100,7 +100,7 @@ export const getMovieGenres = async () => {
 };
 
 export const getShowGenres = async () => {
-  const queryParams = '?language=en-US';
+  const queryParams = '?language=en';
 
   try {
     const response = await fetch(
@@ -114,7 +114,7 @@ export const getShowGenres = async () => {
 
     const data = await response.json();
 
-    return data.results;
+    return data.genres;
   } catch (error) {
     console.error('Error fetching tv show genres:', error);
 

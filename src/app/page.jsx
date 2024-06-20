@@ -1,6 +1,7 @@
 import { Carousel, Divider, MainLayout, Slider } from '@/components/';
 import { getMostVotedMovies, getMostVotedShows } from '@/utils/api';
-import { getVideos } from '@/utils/helpers';
+import { MEDIA_TYPE } from '@/utils/constants';
+import { getVideos, withGenre } from '@/utils/helpers';
 
 const PopularMovies = async () => {
   const movies = await getVideos();
@@ -10,11 +11,12 @@ const PopularMovies = async () => {
 
 const MostVotedMovies = async () => {
   const movies = await getMostVotedMovies();
+  const withGenreMovies = await withGenre(MEDIA_TYPE.MOVIE, movies);
 
   return (
     <Carousel
       headline='Most voted Movies'
-      mediaItems={movies}
+      mediaItems={withGenreMovies}
       hasGenre={true}
       hasDescription={true}
       hasTitle={true}
@@ -23,15 +25,20 @@ const MostVotedMovies = async () => {
 };
 
 const MostVotedShows = async () => {
-  let shows = await getMostVotedShows();
+  const shows = await getMostVotedShows();
+  let withGenreShows = await withGenre(MEDIA_TYPE.SHOW, shows);
 
   if (!shows.title) {
-    shows = shows.map(s => ({ ...s, title: s.original_name }));
+    withGenreShows = withGenreShows.map((s) => ({
+      ...s,
+      title: s.original_name,
+    }));
   }
+
   return (
     <Carousel
       headline='Most voted Shows'
-      mediaItems={shows}
+      mediaItems={withGenreShows}
       hasGenre={true}
       hasDescription={true}
       hasTitle={true}
