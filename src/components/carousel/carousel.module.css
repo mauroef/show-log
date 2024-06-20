@@ -22,28 +22,28 @@
   right: -30px;
 }
 
+.carousel > div::before,
+.carousel > div::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  pointer-events: none;
+  z-index: 9;
+}
+
+.carousel > div::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(45, 45, 45, 0.7), rgba(45, 45, 45, 0));
+}
+
+.carousel > div::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(45, 45, 45, 0.7), rgba(45, 45, 45, 0));
+}
+
 @media (min-width: 768px) {
-  .carousel > div::before,
-  .carousel > div::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 10px;
-    pointer-events: none;
-    z-index: 9;
-  }
-
-  .carousel > div::before {
-    left: 0;
-    background: linear-gradient(to right, rgba(45, 45, 45, 0.7), rgba(45, 45, 45, 0));
-  }
-
-  .carousel > div::after {
-    right: 0;
-    background: linear-gradient(to left, rgba(45, 45, 45, 0.7), rgba(45, 45, 45, 0));
-  }
-
   .custom-arrow {
     color: white;
     display: block;

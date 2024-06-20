@@ -63,7 +63,7 @@ const Carousel = ({
       <Slider {...settings} className={`${styles['carousel']}`}>
         {mediaItems.length > 0 &&
           mediaItems.map((item) => (
-            <div key={item.id} className={`${styles['carousel__item']} px-2.5`}>
+            <div key={item.id} className={`${styles['carousel__item']} px-1.5 md:px-2.5`}>
               <Image
                 alt={item.title}
                 className={`${styles['carousel__image']} rounded-xl`}
