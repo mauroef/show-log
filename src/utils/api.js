@@ -32,22 +32,65 @@ export const getMostVotedMovies = async () => {
   }
 };
 
-export const getMovieVideoById = async (movieId) => {
+export const getMovieById = async (id) => {
+  const queryParams = '?language=en-US';
+
   try {
     const response = await fetch(
-      `${API.BASE_URL}movie/${movieId}/videos`,
+      `${API.BASE_URL}movie/${id}${queryParams}`,
       OPTIONS
     );
 
     if (!response.ok) {
-      throw new Error('Failed to fetch popular movies');
+      throw new Error('Failed to fetch movie');
+    }
+
+    const data = await response.json();
+    console.log({data})
+    return data;
+  } catch (error) {
+    console.error('Error fetching movie:', error);
+
+    return null;
+  }
+};
+
+export const getShowById = async (id) => {
+  const queryParams = '?language=en-US';
+
+  try {
+    const response = await fetch(
+      `${API.BASE_URL}tv/${id}${queryParams}`,
+      OPTIONS
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch movie');
+    }
+
+    const data = await response.json();
+    console.log({data})
+    return data;
+  } catch (error) {
+    console.error('Error fetching movie:', error);
+
+    return null;
+  }
+};
+
+export const getMovieVideoById = async (id) => {
+  try {
+    const response = await fetch(`${API.BASE_URL}movie/${id}/videos`, OPTIONS);
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch video movie');
     }
 
     const data = await response.json();
 
     return data.results[0];
   } catch (error) {
-    console.error('Error fetching popular movies:', error);
+    console.error('Error fetching video movie:', error);
 
     return null;
   }

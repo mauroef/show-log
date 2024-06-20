@@ -1,3 +1,4 @@
+import slugify from 'slugify';
 import { MEDIA_TYPE } from './constants';
 import {
   getPopularMovies,
@@ -56,4 +57,48 @@ export const withGenre = async (type, media) => {
   } finally {
     return mediaWithGenre;
   }
+};
+
+export const slug = (text) => slugify(text, { lower: true, strict: true });
+
+export const withDetailUrl = (type, media) => {
+  let mediaWithUrl = media;
+
+  try {
+    mediaWithUrl = media.map((m) => {
+      let url = '';
+
+      if (type === MEDIA_TYPE.MOVIE) {
+        url = `/movies/${slug(m.title)}-${m.id}`;
+      }
+      if (type === MEDIA_TYPE.SHOW) {
+        url = `/shows/${slug(m.title)}-${m.id}`;
+      }
+
+      return { ...m, url };
+    });
+  } catch (error) {
+    console.log({ error });
+  } finally {
+    return mediaWithUrl;
+  }
+};
+
+export const withTitle = (media) => {
+  let mediaWithTitle = media;
+
+  if (!media.title) {
+    mediaWithTitle = media.map((s) => ({
+      ...s,
+      title: s.original_name,
+    }));
+  }
+
+  return mediaWithTitle;
+};
+
+export const extractIdFromSlug = (slug) => {
+  const parts = slug.split('-');
+
+  return parts[parts.length - 1];
 };

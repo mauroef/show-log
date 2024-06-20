@@ -1,7 +1,7 @@
 import { Carousel, Divider, MainLayout, Slider } from '@/components/';
 import { getMostVotedMovies, getMostVotedShows } from '@/utils/api';
 import { MEDIA_TYPE } from '@/utils/constants';
-import { getVideos, withGenre } from '@/utils/helpers';
+import { getVideos, withDetailUrl, withGenre, withTitle } from '@/utils/helpers';
 
 const PopularMovies = async () => {
   const movies = await getVideos();
@@ -10,13 +10,14 @@ const PopularMovies = async () => {
 };
 
 const MostVotedMovies = async () => {
-  const movies = await getMostVotedMovies();
-  const withGenreMovies = await withGenre(MEDIA_TYPE.MOVIE, movies);
+  const movies = await getMostVotedMovies()
+    .then((m) => withGenre(MEDIA_TYPE.MOVIE, m))
+    .then((m) => withDetailUrl(MEDIA_TYPE.MOVIE, m));
 
   return (
     <Carousel
       headline='Most voted Movies'
-      mediaItems={withGenreMovies}
+      mediaItems={movies}
       hasGenre={true}
       hasDescription={true}
       hasTitle={true}
@@ -25,20 +26,15 @@ const MostVotedMovies = async () => {
 };
 
 const MostVotedShows = async () => {
-  const shows = await getMostVotedShows();
-  let withGenreShows = await withGenre(MEDIA_TYPE.SHOW, shows);
-
-  if (!shows.title) {
-    withGenreShows = withGenreShows.map((s) => ({
-      ...s,
-      title: s.original_name,
-    }));
-  }
+  const shows = await getMostVotedShows()
+    .then((s) => withGenre(MEDIA_TYPE.SHOW, s))
+    .then((s) => withTitle(s))
+    .then((s) => withDetailUrl(MEDIA_TYPE.SHOW, s));
 
   return (
     <Carousel
       headline='Most voted Shows'
-      mediaItems={withGenreShows}
+      mediaItems={shows}
       hasGenre={true}
       hasDescription={true}
       hasTitle={true}
