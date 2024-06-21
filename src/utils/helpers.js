@@ -27,7 +27,7 @@ export const getVideos = async (limit = 8) => {
       });
     }
   } catch (error) {
-    console.log({ error });
+    console.error({ error });
   } finally {
     return videos;
   }
@@ -41,7 +41,6 @@ export const withGenre = async (type, media) => {
 
     if (type === MEDIA_TYPE.MOVIE) {
       genres = await getMovieGenres();
-      console.log({ genres });
     }
     if (type === MEDIA_TYPE.SHOW) {
       genres = await getShowGenres();
@@ -53,7 +52,7 @@ export const withGenre = async (type, media) => {
       return { ...m, genre_name: genre ? genre.name : '' };
     });
   } catch (error) {
-    console.log({ error });
+    console.error({ error });
   } finally {
     return mediaWithGenre;
   }
@@ -78,7 +77,7 @@ export const withDetailUrl = (type, media) => {
       return { ...m, url };
     });
   } catch (error) {
-    console.log({ error });
+    console.error({ error });
   } finally {
     return mediaWithUrl;
   }
@@ -101,4 +100,19 @@ export const extractIdFromSlug = (slug) => {
   const parts = slug.split('-');
 
   return parts[parts.length - 1];
+};
+
+// Helper function to handle fetch responses
+export const handleResponse = async (response) => {
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.status_message || 'An error occurred');
+  }
+  return response.json();
+};
+
+export const handleFetchError = (error, context, fallback = null) => {
+  console.error(`Error fetching ${context}:`, error);
+
+  return fallback;
 };

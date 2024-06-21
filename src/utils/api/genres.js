@@ -1,3 +1,4 @@
+import { handleResponse, handleFetchError } from '@/utils/helpers';
 import { API } from '@/utils/constants';
 
 const OPTIONS = {
@@ -16,12 +17,10 @@ export const getMovieGenres = async () => {
       `${API.BASE_URL}genre/movie/list${queryParams}`,
       OPTIONS
     );
-    if (!response.ok) throw new Error('Failed to fetch movie genres');
-    const data = await response.json();
-    return data.genres;
+
+    return await handleResponse(response).then((data) => data.genres);
   } catch (error) {
-    console.error('Error fetching movie genres:', error);
-    return [];
+    return handleFetchError(error, 'movie genres', []);
   }
 };
 
@@ -34,12 +33,8 @@ export const getShowGenres = async () => {
       OPTIONS
     );
 
-    if (!response.ok) throw new Error('Failed to fetch tv show genres');
-
-    const data = await response.json();
-    return data.genres;
+    return await handleResponse(response).then((data) => data.genres);
   } catch (error) {
-    console.error('Error fetching tv show genres:', error);
-    return [];
+    return handleFetchError(error, 'show genres', []);
   }
 };
