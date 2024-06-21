@@ -1,11 +1,11 @@
 import slugify from 'slugify';
-import { MEDIA_TYPE } from './constants';
+import { MEDIA_TYPE } from '@/utils/constants';
 import {
   getPopularMovies,
   getMovieVideoById,
   getMovieGenres,
   getShowGenres,
-} from './api';
+} from '@/utils/api';
 
 export const getVideos = async (limit = 8) => {
   const videos = [];
