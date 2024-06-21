@@ -1,4 +1,5 @@
 import { API } from '@/utils/constants';
+import { handleResponse, handleFetchError } from '@/utils/helpers';
 
 const OPTIONS = {
   method: 'GET',
@@ -16,13 +17,9 @@ export const getShowById = async (id) => {
       OPTIONS
     );
 
-    if (!response.ok) throw new Error('Failed to fetch show');
-
-    const data = await response.json();
-    return data;
+    return await handleResponse(response).then((data) => data);
   } catch (error) {
-    console.error('Error fetching show:', error);
-    return null;
+    return handleFetchError(error, `show details id: ${id}`, null);
   }
 };
 
@@ -36,12 +33,8 @@ export const getMostVotedShows = async () => {
       OPTIONS
     );
 
-    if (!response.ok) throw new Error('Failed to fetch most voted tv shows');
-
-    const data = await response.json();
-    return data.results;
+    return await handleResponse(response).then((data) => data.results);
   } catch (error) {
-    console.error('Error fetching most voted tv shows:', error);
-    return [];
+    return handleFetchError(error, 'most voted shows', []);
   }
 };

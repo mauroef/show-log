@@ -1,4 +1,5 @@
 import { API } from '@/utils/constants';
+import { handleResponse, handleFetchError } from '@/utils/helpers';
 
 const OPTIONS = {
   method: 'GET',
@@ -18,14 +19,9 @@ export const getMostVotedMovies = async () => {
       OPTIONS
     );
 
-    if (!response.ok) throw new Error('Failed to fetch most voted movies');
-
-    const data = await response.json();
-
-    return data.results;
+    return await handleResponse(response).then((data) => data.results);
   } catch (error) {
-    console.error('Error fetching most voted movies:', error);
-    return [];
+    return handleFetchError(error, 'most voted movies', []);
   }
 };
 
@@ -38,13 +34,9 @@ export const getMovieById = async (id) => {
       OPTIONS
     );
 
-    if (!response.ok) throw new Error('Failed to fetch movie');
-
-    const data = await response.json();
-    return data;
+    return await handleResponse(response).then((data) => data);
   } catch (error) {
-    console.error('Error fetching movie:', error);
-    return null;
+    return handleFetchError(error, `movie details id: ${id}`, null);
   }
 };
 
@@ -52,13 +44,9 @@ export const getMovieVideoById = async (id) => {
   try {
     const response = await fetch(`${API.BASE_URL}movie/${id}/videos`, OPTIONS);
 
-    if (!response.ok) throw new Error('Failed to fetch video movie');
-
-    const data = await response.json();
-    return data.results[0];
+    return await handleResponse(response).then((data) => data.results[0]);
   } catch (error) {
-    console.error('Error fetching video movie:', error);
-    return null;
+    return handleFetchError(error, `movie video id: ${id}`, null);
   }
 };
 
@@ -71,12 +59,8 @@ export const getPopularMovies = async () => {
       OPTIONS
     );
 
-    if (!response.ok) throw new Error('Failed to fetch popular movies');
-
-    const data = await response.json();
-    return data.results;
+    return await handleResponse(response).then((data) => data.results);
   } catch (error) {
-    console.error('Error fetching popular movies:', error);
-    return [];
+    return handleFetchError(error, 'popular movies', []);
   }
 };

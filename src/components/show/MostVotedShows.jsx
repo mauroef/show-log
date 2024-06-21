@@ -1,5 +1,5 @@
 import { getMostVotedShows } from '@/utils/api';
-import { withDetailUrl, withGenre, withTitle } from '@/utils/helpers';
+import { withDetailUrl, withGenre, withTitle } from '@/utils/dataTransformation';
 import { MEDIA_TYPE } from '@/utils/constants';
 import { Carousel } from '@/components';
 
