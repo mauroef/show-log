@@ -13,8 +13,12 @@ const MovieDetailsPage = async ({ params }) => {
 
   return (
     <MainLayout>
-      <MovieHeader movie={movie} />
-      <div style={{ height: '1000vh', width: '100%' }}></div>
+      <MovieHeader
+        landscape={movie.backdrop_path}
+        overview={movie.overview}
+        portrait={movie.poster_path}
+        title={movie.title}
+      />
     </MainLayout>
   );
 };

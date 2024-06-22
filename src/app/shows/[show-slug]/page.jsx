@@ -13,7 +13,12 @@ const ShowDetailsPage = async ({ params }) => {
 
   return (
     <MainLayout>
-      <ShowHeader show={show}/>
+      <ShowHeader
+        landscape={show.backdrop_path}
+        portrait={show.poster_path}
+        overview={show.overview}
+        title={show.name}
+      />
     </MainLayout>
   );
 };
