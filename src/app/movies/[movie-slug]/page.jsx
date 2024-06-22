@@ -14,6 +14,7 @@ const MovieDetailsPage = async ({ params }) => {
   return (
     <MainLayout>
       <MovieHeader
+        average={Math.trunc(movie.vote_average * 10)}
         landscape={movie.backdrop_path}
         overview={movie.overview}
         portrait={movie.poster_path}

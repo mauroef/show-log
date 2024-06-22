@@ -3,8 +3,9 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { IMAGE_URLS } from '@/utils/constants';
+import { Pie } from '@/components';
 
-const MovieHeader = ({ landscape, overview, portrait, title }) => {
+const MovieHeader = ({ average, landscape, overview, portrait, title }) => {
   return (
     <section className='relative'>
       <motion.div className='2xl:rounded-b-2xl w-full'>
@@ -30,6 +31,7 @@ const MovieHeader = ({ landscape, overview, portrait, title }) => {
         className='absolute bottom-10 left-12 leading-normal max-w-2xl flex hidden md:block'
         style={{ minWidth: 'calc(100% - 96px)' }}
       >
+        <Pie percentage={average} color={'white'} />
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,7 +44,7 @@ const MovieHeader = ({ landscape, overview, portrait, title }) => {
           className='mt-6 p-4 rounded-lg'
           style={{ backdropFilter: 'blur(60px) saturate(200%)' }}
         >
-          <p className='text-gray-300'>{overview}</p>
+          <h2 className='text-gray-300'>{overview}</h2>
         </div>
       </div>
     </section>
