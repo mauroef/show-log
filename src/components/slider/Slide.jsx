@@ -34,8 +34,8 @@ const Slide = ({
         }`}
       />
       {!isMobile && (
-        <div className={styles['image__title']}>
-          <h2>{item.title || ''}</h2>
+        <div className='absolute bottom-10 left-12 leading-normal max-w-2xl'>
+          <h2 className='text-white text-6xl'>{item.title || ''}</h2>
         </div>
       )}
     </motion.div>

@@ -10,9 +10,12 @@ export { default as Divider } from './ui/Divider';
 // movie
 export { default as MostVotedMovies } from './movie/MostVotedMovies';
 export { default as PopularMovies } from './movie/PopularMovies';
+export { default as MovieHeader } from './movie/MovieHeader';
 
 // show
 export { default as MostVotedShows } from './show/MostVotedShows';
+export { default as ShowHeader } from './show/ShowHeader';
+
 
 // slider
 export { default as Slider } from './slider/Slider';

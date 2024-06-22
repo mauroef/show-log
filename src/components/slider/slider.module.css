@@ -1,6 +1,7 @@
 .slider {
   aspect-ratio: 733/916;
 }
+
 .player-wrapper {
   background-color: black;
   overflow: hidden;
@@ -41,20 +42,6 @@
   height: 10px;
   opacity: 0.5;
   width: 10px;
-}
-
-.image__title {
-  bottom: 32px;
-  position: absolute;
-  left: 32px;
-  line-height: normal;
-  max-width: 600px;
-  text-wrap: balance;
-}
-
-.image__title h2 {
-  color: white;
-  font-size: 64px;
 }
 
 .video__controls {

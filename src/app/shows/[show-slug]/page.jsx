@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { MainLayout } from '@/components/';
+import { MainLayout, ShowHeader } from '@/components/';
 import { getShowById } from '@/utils/api';
 import { extractIdFromSlug } from '@/utils/helpers';
 
@@ -13,8 +13,7 @@ const ShowDetailsPage = async ({ params }) => {
 
   return (
     <MainLayout>
-      <h1>{show.title}</h1>
-      <p>{JSON.stringify(show)}</p>
+      <ShowHeader show={show}/>
     </MainLayout>
   );
 };
