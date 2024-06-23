@@ -1,7 +1,11 @@
-import { MainLayout } from '@/components/';
+import { MainLayout, PopularMovies } from '@/components/';
 
 const MoviesPage = () => {
-  return <MainLayout>welcome to the movies page</MainLayout>;
+  return (
+    <MainLayout>
+      <PopularMovies />
+    </MainLayout>
+  );
 };
 
 export default MoviesPage;

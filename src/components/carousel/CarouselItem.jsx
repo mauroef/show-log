@@ -14,7 +14,7 @@ const CarouselItem = ({ item, index, hasGenre, hasTitle, hasDescription }) => (
         src={`${IMAGE_URLS.BASE_TEASER}${item['backdrop_path']}`}
         priority={index === 0}
       />
-      <div className="absolute inset-0 bg-neutral-800/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+      <div className="absolute inset-0 bg-neutral-900/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
     </Link>
     {hasGenre && (
       <div className="text-xs text-white/70 uppercase font-bold">

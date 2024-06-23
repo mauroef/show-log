@@ -3,13 +3,13 @@ import {
   MainLayout,
   MostVotedMovies,
   MostVotedShows,
-  PopularMovies,
+  UpcomingMovies,
 } from '@/components/';
 
 const HomePage = () => {
   return (
     <MainLayout>
-      <PopularMovies />
+      <UpcomingMovies />
       <MostVotedMovies />
       <Divider />
       <MostVotedShows />

@@ -1,40 +1,14 @@
 import { MEDIA_TYPE } from '@/utils/constants';
 import {
-  getPopularMovies,
-  getMovieVideoById,
   getMovieGenres,
+  getMovieVideosById,
   getShowGenres,
+  getShowVideosById,
 } from '@/utils/api';
 import { slug } from '@/utils/helpers';
 
 const handleDataError = (error, context) => {
   console.error(`Error processing ${context}:`, error);
-};
-
-export const getVideos = async (limit = 8) => {
-  const videos = [];
-
-  try {
-    const movies = await getPopularMovies();
-
-    for (let i = 0; i < limit; i++) {
-      const movie = movies[i];
-      const videoData = await getMovieVideoById(movies[i].id);
-      videos.push({
-        title: movie.title,
-        id: movie.id,
-        image: {
-          landscape: movie.backdrop_path,
-          portrait: movie.poster_path,
-        },
-        video: videoData,
-      });
-    }
-  } catch (error) {
-    handleDataError(error, 'getVideos');
-  } finally {
-    return videos;
-  }
 };
 
 export const withDetailUrl = (type, media) => {
@@ -96,4 +70,50 @@ export const withTitle = (media) => {
   }
 
   return mediaWithTitle;
+};
+
+export const withVideos = async (type, media, limit = 8) => {
+  try {
+    const mediaSlice = media.slice(0, limit);
+
+    const videoPromises = mediaSlice.map(async (item) => {
+      if (type === MEDIA_TYPE.MOVIE) {
+        const videoData = await getMovieVideosById(item.id);
+        if (!videoData || videoData.length === 0) {
+          return null;
+        }
+        return {
+          title: item.title,
+          id: item.id,
+          image: {
+            landscape: item.backdrop_path,
+            portrait: item.poster_path,
+          },
+          video: videoData.find((v) => v.type === 'Trailer'),
+        };
+      }
+      if (type === MEDIA_TYPE.SHOW) {
+        const videoData = await getShowVideosById(item.id);
+        if (!videoData || videoData.length === 0) {
+          return null;
+        }
+        return {
+          title: item.name,
+          id: item.id,
+          image: {
+            landscape: item.backdrop_path,
+            portrait: item.poster_path,
+          },
+          video: videoData.find((v) => v.type === 'Trailer'),
+        };
+      }
+      return null;
+    });
+
+    const mediaWithVideo = await Promise.all(videoPromises);
+    return mediaWithVideo.filter((item) => item !== null && item?.video);
+  } catch (error) {
+    handleDataError(error, 'getVideos');
+    return [];
+  }
 };

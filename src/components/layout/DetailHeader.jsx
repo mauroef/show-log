@@ -25,7 +25,7 @@ const DetailHeader = ({ average, landscape, overview, portrait, title }) => {
           src={`${IMAGE_URLS.BASE_LEAD}${landscape}`}
           priority
         />
-        <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent 2xl:rounded-b-2xl'></div>
+        <div className='absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent 2xl:rounded-b-2xl'></div>
       </div>
       <div
         className='absolute bottom-10 left-12 leading-normal max-w-2xl flex hidden md:block'

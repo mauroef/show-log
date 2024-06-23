@@ -40,11 +40,11 @@ export const getMovieById = async (id) => {
   }
 };
 
-export const getMovieVideoById = async (id) => {
+export const getMovieVideosById = async (id) => {
   try {
     const response = await fetch(`${API.BASE_URL}movie/${id}/videos`, OPTIONS);
 
-    return await handleResponse(response).then((data) => data.results[0]);
+    return await handleResponse(response).then((data) => data.results);
   } catch (error) {
     return handleFetchError(error, `movie video id: ${id}`, null);
   }
@@ -62,5 +62,20 @@ export const getPopularMovies = async () => {
     return await handleResponse(response).then((data) => data.results);
   } catch (error) {
     return handleFetchError(error, 'popular movies', []);
+  }
+};
+
+export const getUpcomingMovies = async () => {
+  const queryParams = '?language=en-US&page=1';
+
+  try {
+    const response = await fetch(
+      `${API.BASE_URL}movie/upcoming${queryParams}`,
+      OPTIONS
+    );
+
+    return await handleResponse(response).then((data) => data.results);
+  } catch (error) {
+    return handleFetchError(error, 'upcoming movies', []);
   }
 };

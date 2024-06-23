@@ -1,7 +1,11 @@
-import MainLayout from '@/components/layout/MainLayout';
+import { MainLayout, PopularShows } from '@/components';
 
 const ShowsPage = () => {
-  return <MainLayout>welcome to the shows page</MainLayout>;
+  return (
+    <MainLayout>
+      <PopularShows />
+    </MainLayout>
+  );
 };
 
 export default ShowsPage;
