@@ -10,7 +10,7 @@ const cleanPercentage = (percentage) => {
 };
 
 const Circle = ({ color, pct, animate = true }) => {
-  const r = 70;
+  const r = 40;
   const circ = 2 * Math.PI * r;
   const strokePct = ((100 - pct) * circ) / 100;
   const percentage = useMotionValue(pct);
@@ -27,11 +27,11 @@ const Circle = ({ color, pct, animate = true }) => {
   return (
     <motion.circle
       r={r}
-      cx={100}
-      cy={100}
+      cx={50}
+      cy={50}
       fill='transparent'
       stroke={strokePct !== circ ? colorTransition : ''}
-      strokeWidth={'16px'}
+      strokeWidth={'8px'}
       strokeDasharray={circ}
       strokeDashoffset={pct ? strokePct : 0}
       strokeLinecap='round'
@@ -43,16 +43,16 @@ const Circle = ({ color, pct, animate = true }) => {
 };
 
 const StaticCircle = ({ color }) => {
-  const r = 70;
+  const r = 40;
   const circ = 2 * Math.PI * r;
   return (
     <circle
       r={r}
-      cx={100}
-      cy={100}
+      cx={50}
+      cy={50}
       fill='transparent'
       stroke={color}
-      strokeWidth={'16px'}
+      strokeWidth={'8px'}
       strokeDasharray={circ}
       strokeDashoffset={0}
       strokeLinecap='round'
@@ -83,10 +83,11 @@ const Text = ({ percentage }) => {
       y='50%'
       dominantBaseline='central'
       textAnchor='middle'
-      fontSize={'1.5em'}
+      fontSize={'24px'}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 2, ease: 'easeOut' }}
+      transition={{ duration: 1.5, ease: 'easeOut' }}
+      fill='white'
     >
       {value}%
     </motion.text>
@@ -97,8 +98,8 @@ const Pie = ({ percentage }) => {
   const pct = cleanPercentage(percentage);
 
   return (
-    <svg width={200} height={200}>
-      <g transform={`rotate(-90 ${'100 100'})`}>
+    <svg width={100} height={100}>
+      <g transform={`rotate(-90 ${'50 50'})`}>
         <StaticCircle color='lightgrey' />
         <Circle color='currentColor' pct={pct} />
       </g>

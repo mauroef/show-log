@@ -5,10 +5,10 @@ import { motion } from 'framer-motion';
 import { IMAGE_URLS } from '@/utils/constants';
 import { Pie } from '@/components';
 
-const MovieHeader = ({ average, landscape, overview, portrait, title }) => {
+const DetailHeader = ({ average, landscape, overview, portrait, title }) => {
   return (
     <section className='relative'>
-      <motion.div className='2xl:rounded-b-2xl w-full'>
+      <div className='2xl:rounded-b-2xl w-full'>
         <Image
           alt={title}
           width={1280}
@@ -26,22 +26,29 @@ const MovieHeader = ({ average, landscape, overview, portrait, title }) => {
           priority
         />
         <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent 2xl:rounded-b-2xl'></div>
-      </motion.div>
+      </div>
       <div
         className='absolute bottom-10 left-12 leading-normal max-w-2xl flex hidden md:block'
         style={{ minWidth: 'calc(100% - 96px)' }}
       >
-        <Pie percentage={average} color={'white'} />
-        <motion.h1
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className='text-white text-6xl'
-        >
-          {title || ''}
-        </motion.h1>
+        <header className='flex justify-between aign-items-center'>
+          <motion.h1
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className='text-white text-6xl self-center'
+          >
+            {title || ''}
+          </motion.h1>
+          <div
+            className='p-2 rounded-lg'
+            style={{ backdropFilter: 'blur(60px) saturate(200%)' }}
+          >
+            <Pie percentage={average} color={'white'} />
+          </div>
+        </header>
         <div
-          className='mt-6 p-4 rounded-lg'
+          className='mt-4 p-4 rounded-lg'
           style={{ backdropFilter: 'blur(60px) saturate(200%)' }}
         >
           <h2 className='text-gray-300'>{overview}</h2>
@@ -51,4 +58,4 @@ const MovieHeader = ({ average, landscape, overview, portrait, title }) => {
   );
 };
 
-export default MovieHeader;
+export default DetailHeader;

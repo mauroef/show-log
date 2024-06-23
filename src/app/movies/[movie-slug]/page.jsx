@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getMovieById } from '@/utils/api';
 import { extractIdFromSlug } from '@/utils/helpers';
-import { MainLayout, MovieHeader } from '@/components/';
+import { DetailHeader, MainLayout } from '@/components/';
 
 const MovieDetailsPage = async ({ params }) => {
   const id = extractIdFromSlug(params['movie-slug']);
@@ -13,7 +13,7 @@ const MovieDetailsPage = async ({ params }) => {
 
   return (
     <MainLayout>
-      <MovieHeader
+      <DetailHeader
         average={Math.trunc(movie.vote_average * 10)}
         landscape={movie.backdrop_path}
         overview={movie.overview}

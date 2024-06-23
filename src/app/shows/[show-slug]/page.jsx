@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
-import { MainLayout, ShowHeader } from '@/components/';
 import { getShowById } from '@/utils/api';
 import { extractIdFromSlug } from '@/utils/helpers';
+import { DetailHeader, MainLayout } from '@/components/';
 
 const ShowDetailsPage = async ({ params }) => {
   const id = extractIdFromSlug(params['show-slug']);
@@ -13,10 +13,11 @@ const ShowDetailsPage = async ({ params }) => {
 
   return (
     <MainLayout>
-      <ShowHeader
+      <DetailHeader
+        average={Math.trunc(show.vote_average * 10)}
         landscape={show.backdrop_path}
-        portrait={show.poster_path}
         overview={show.overview}
+        portrait={show.poster_path}
         title={show.name}
       />
     </MainLayout>
