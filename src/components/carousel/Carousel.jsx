@@ -12,7 +12,7 @@ const Carousel = ({ hasDescription, hasGenre, hasTitle, mediaItems, headline }) 
 
   return (
     <div className="mx-6 md:mx-10">
-      <h2 className="text-2xl font-bold px-2.5 py-3 text-white/90">{headline}</h2>
+      <h2 className="text-2xl font-bold px-2 py-3 text-white/90">{headline}</h2>
       <Slider {...settings} className={`${styles['carousel']} pb-3`}>
         {mediaItems.length > 0 &&
           mediaItems.map((item, index) => (
