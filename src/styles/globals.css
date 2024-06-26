@@ -5,8 +5,8 @@
 @import './variables.css';
 
 /* Slick CSS */
-@import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css";
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
 
 .slick-dots {
   bottom: 17px;
@@ -36,4 +36,8 @@
 /* General */
 body {
   background-color: #2d2d2d;
+}
+
+section > h2 + div > ul::-webkit-scrollbar {
+  display: none;
 }

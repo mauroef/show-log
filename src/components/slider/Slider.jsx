@@ -20,7 +20,8 @@ const Slider = ({ mediaItems }) => {
     const timer = setTimeout(() => {
       setPlayTrailer(true);
       setIsPlaying(true);
-    }, SLIDER.SWITCH_TO_VIDEO_DURATION || 5000);
+    // }, SLIDER.SWITCH_TO_VIDEO_DURATION || 5000);
+    }, 500000);
 
     return () => {
       clearTimeout(timer);

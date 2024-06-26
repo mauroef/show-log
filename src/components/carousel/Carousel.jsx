@@ -6,13 +6,23 @@ import CarouselItem from './CarouselItem';
 import sliderSettings from './sliderSettings';
 import styles from './carousel.module.css';
 
-const Carousel = ({ hasDescription, hasGenre, hasTitle, mediaItems, headline }) => {
+const Carousel = ({
+  hasDescription,
+  hasGenre,
+  hasTitle,
+  mediaItems,
+  headline,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const settings = sliderSettings(currentIndex, setCurrentIndex, mediaItems.length);
+  const settings = sliderSettings(
+    currentIndex,
+    setCurrentIndex,
+    mediaItems.length
+  );
 
   return (
-    <div className="mx-6 md:mx-10">
-      <h2 className="text-2xl font-bold px-2 py-3 text-white/90">{headline}</h2>
+    <div className='mx-6 md:mx-10'>
+      <h2 className='text-2xl font-bold px-2 py-3 text-white/90'>{headline}</h2>
       <Slider {...settings} className={`${styles['carousel']} pb-3`}>
         {mediaItems.length > 0 &&
           mediaItems.map((item, index) => (

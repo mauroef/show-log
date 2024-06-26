@@ -23,3 +23,6 @@ export { default as Slider } from './slider/Slider';
 
 // carousel
 export { default as Carousel } from './carousel/Carousel';
+
+// shelf
+export { default as ShelfGrid } from './shelf/ShelfGrid';

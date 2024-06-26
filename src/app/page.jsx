@@ -12,7 +12,7 @@ const HomePage = () => {
       <UpcomingMovies />
       <MostVotedMovies />
       <Divider />
-      <MostVotedShows />
+      {/* <MostVotedShows /> */}
     </MainLayout>
   );
 };

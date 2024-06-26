@@ -7,11 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
+      gridAutoColumns: {
+        'three': 'calc((100% - 2 * 20px) / 3)',
+        'four': 'calc((100% - 3 * 20px) / 4)',
+        'five': 'calc((100% - 4 * 20px) / 5)'
+      }
     },
   },
   plugins: [],
