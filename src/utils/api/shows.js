@@ -9,30 +9,6 @@ const OPTIONS = {
   },
 };
 
-export const getShowById = async (id) => {
-  const queryParams = '?language=en-US';
-  try {
-    const response = await fetch(
-      `${API.BASE_URL}tv/${id}${queryParams}`,
-      OPTIONS
-    );
-
-    return await handleResponse(response).then((data) => data);
-  } catch (error) {
-    return handleFetchError(error, `show details id: ${id}`, null);
-  }
-};
-
-export const getShowVideosById = async (id) => {
-  try {
-    const response = await fetch(`${API.BASE_URL}tv/${id}/videos`, OPTIONS);
-
-    return await handleResponse(response).then((data) => data.results);
-  } catch (error) {
-    return handleFetchError(error, `show video id: ${id}`, null);
-  }
-};
-
 export const getMostVotedShows = async () => {
   const queryParams =
     '?include_adult=false&include_video=true&language=en-US&page=1&sort_by=vote_count.desc';
@@ -61,5 +37,45 @@ export const getPopularShows = async () => {
     return await handleResponse(response).then((data) => data.results);
   } catch (error) {
     return handleFetchError(error, 'popular shows', []);
+  }
+};
+
+export const getShowById = async (id) => {
+  const queryParams = '?language=en-US';
+
+  try {
+    const response = await fetch(
+      `${API.BASE_URL}tv/${id}${queryParams}`,
+      OPTIONS
+    );
+
+    return await handleResponse(response).then((data) => data);
+  } catch (error) {
+    return handleFetchError(error, `show details id: ${id}`, null);
+  }
+};
+
+export const getShowByProvider = async (providerId) => {
+  const queryParams = `?with_watch_providers=${providerId}&watch_region=AR`;
+
+  try {
+    const response = await fetch(
+      `${API.BASE_URL}discover/tv${queryParams}`,
+      OPTIONS
+    );
+
+    return await handleResponse(response).then((data) => data.results);
+  } catch (error) {
+    return handleFetchError(error, `show video id: ${id}`, null);
+  }
+};
+
+export const getShowVideosById = async (id) => {
+  try {
+    const response = await fetch(`${API.BASE_URL}tv/${id}/videos`, OPTIONS);
+
+    return await handleResponse(response).then((data) => data.results);
+  } catch (error) {
+    return handleFetchError(error, `show video id: ${id}`, null);
   }
 };
