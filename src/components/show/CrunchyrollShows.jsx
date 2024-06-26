@@ -4,8 +4,8 @@ import { withDetailUrl, withTitle } from '@/utils/dataTransformation';
 import { MEDIA_TYPE } from '@/utils/constants';
 import { ShelfGrid } from '@/components';
 
-const MaxShows = async () => {
-  const shows = await getShowByProvider(WATCH_PROVIDERS.Max.id)
+const CrunchyrollShows = async () => {
+  const shows = await getShowByProvider(WATCH_PROVIDERS.Crunchyroll.id)
     .then((s) => withTitle(s))
     .then((s) => withDetailUrl(MEDIA_TYPE.SHOW, s));
 
@@ -16,8 +16,8 @@ const MaxShows = async () => {
   };
 
   return (
-    <ShelfGrid headline='Max' media={shows} settings={settings} />
+    <ShelfGrid headline='Crunchyroll' media={shows} settings={settings} />
   );
 };
 
-export default MaxShows;
+export default CrunchyrollShows;

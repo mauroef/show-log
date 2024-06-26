@@ -4,8 +4,8 @@ import { withDetailUrl, withTitle } from '@/utils/dataTransformation';
 import { MEDIA_TYPE } from '@/utils/constants';
 import { ShelfGrid } from '@/components';
 
-const MaxShows = async () => {
-  const shows = await getShowByProvider(WATCH_PROVIDERS.Max.id)
+const AppleTvPlusShows = async () => {
+  const shows = await getShowByProvider(WATCH_PROVIDERS['Apple TV Plus'].id)
     .then((s) => withTitle(s))
     .then((s) => withDetailUrl(MEDIA_TYPE.SHOW, s));
 
@@ -16,8 +16,8 @@ const MaxShows = async () => {
   };
 
   return (
-    <ShelfGrid headline='Max' media={shows} settings={settings} />
+    <ShelfGrid headline='Apple TV+' media={shows} settings={settings} />
   );
 };
 
-export default MaxShows;
+export default AppleTvPlusShows;

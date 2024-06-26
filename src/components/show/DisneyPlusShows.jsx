@@ -16,7 +16,7 @@ const NetflixShows = async () => {
   };
 
   return (
-    <ShelfGrid headline='Disney+ Shows' media={shows} settings={settings} />
+    <ShelfGrid headline='Disney+' media={shows} settings={settings} />
   );
 };
 

@@ -65,7 +65,7 @@ export const withTitle = (media) => {
   if (!media.title) {
     mediaWithTitle = media.map((s) => ({
       ...s,
-      title: s.original_name,
+      title: s.name,
     }));
   }
 

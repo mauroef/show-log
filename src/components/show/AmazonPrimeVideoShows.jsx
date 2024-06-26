@@ -4,8 +4,8 @@ import { withDetailUrl, withTitle } from '@/utils/dataTransformation';
 import { MEDIA_TYPE } from '@/utils/constants';
 import { ShelfGrid } from '@/components';
 
-const MaxShows = async () => {
-  const shows = await getShowByProvider(WATCH_PROVIDERS.Max.id)
+const AmazonPrimeVideoShows = async () => {
+  const shows = await getShowByProvider(WATCH_PROVIDERS['Amazon Prime Video'].id)
     .then((s) => withTitle(s))
     .then((s) => withDetailUrl(MEDIA_TYPE.SHOW, s));
 
@@ -16,8 +16,8 @@ const MaxShows = async () => {
   };
 
   return (
-    <ShelfGrid headline='Max' media={shows} settings={settings} />
+    <ShelfGrid headline='Amazon Prime Video' media={shows} settings={settings} />
   );
 };
 
-export default MaxShows;
+export default AmazonPrimeVideoShows;
