@@ -1,7 +1,11 @@
 import { getMostVotedShows } from '@/utils/api';
-import { withDetailUrl, withGenre, withTitle } from '@/utils/dataTransformation';
+import {
+  withDetailUrl,
+  withGenre,
+  withTitle,
+} from '@/utils/dataTransformation';
 import { MEDIA_TYPE } from '@/utils/constants';
-import { Carousel } from '@/components';
+import { ShelfGrid } from '@/components';
 
 const MostVotedShows = async () => {
   const shows = await getMostVotedShows()
@@ -9,14 +13,14 @@ const MostVotedShows = async () => {
     .then((s) => withTitle(s))
     .then((s) => withDetailUrl(MEDIA_TYPE.SHOW, s));
 
+  const settings = {
+    hasGenre: true,
+    hasOverview: true,
+    hasTitle: true,
+  };
+
   return (
-    <Carousel
-      headline='Most voted Shows'
-      mediaItems={shows}
-      hasGenre={true}
-      hasDescription={true}
-      hasTitle={true}
-    />
+    <ShelfGrid headline='Most voted Shows' media={shows} settings={settings} />
   );
 };
 

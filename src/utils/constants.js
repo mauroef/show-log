@@ -15,12 +15,16 @@ const MEDIA_TYPE = {
 
 const PROJECT_NAME = 'ShowLog';
 
-const VIDEO_URLS = {
-  YOUTUBE: 'https://www.youtube.com/watch?v=',
+const SHELF = {
+  SCROLL_AMOUNT: 200,
 };
 
 const SLIDER = {
   SWITCH_TO_VIDEO_DURATION: 5000,
 };
 
-export { API, IMAGE_URLS, PROJECT_NAME, SLIDER, MEDIA_TYPE, VIDEO_URLS };
+const VIDEO_URLS = {
+  YOUTUBE: 'https://www.youtube.com/watch?v=',
+};
+
+export { API, IMAGE_URLS, MEDIA_TYPE, PROJECT_NAME, SHELF, SLIDER, VIDEO_URLS };

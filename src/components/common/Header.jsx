@@ -10,7 +10,7 @@ const NavLink = ({ href, children }) => {
   return (
     <Link
       href={href}
-      className={`${path.startsWith(href) ? 'text-white/60' : ''} text-white/90 hover:text-white/60 transition duration-300`}
+      className={`${path.startsWith(href) ? 'text-white/60 active' : ''} hover:text-white/60 transition duration-300`}
     >
       {children}
     </Link>
@@ -19,8 +19,8 @@ const NavLink = ({ href, children }) => {
 
 const Header = () => {
   return (
-    <header className='bg-black text-white/90 text-base h-13 py-3.5 px-5 sticky text-center top-0 z-10'>
-      <nav className='2xl:container 2xl:mx-auto px-12 flex justify-between'>
+    <header className='bg-black text-white/90 h-13 py-3.5 px-6 md:px-12 sticky text-center top-0 z-10'>
+      <nav className='flex justify-between 2xl:container 2xl:mx-auto 2xl:px-12'>
         <div className='flex space-x-2'>
           <Link href='/' className='font-bold uppercase'>
             {PROJECT_NAME}

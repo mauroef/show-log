@@ -4,7 +4,7 @@ import { IMAGE_URLS } from '@/utils/constants';
 import VideoPlayer from './VideoPlayer';
 import styles from './slider.module.css';
 
-const Slide = ({
+const SliderItem = ({
   item,
   isMobile,
   isCurrent,
@@ -55,4 +55,4 @@ const Slide = ({
   </motion.div>
 );
 
-export default Slide;
+export default SliderItem;

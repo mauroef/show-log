@@ -5,7 +5,7 @@ import { default as SlickSlider } from 'react-slick';
 import { motion } from 'framer-motion';
 import useIsMobile from '@/hooks/useIsMobile';
 import { SLIDER } from '@/utils/constants';
-import Slide from './Slide';
+import Slide from './SliderItem';
 import styles from './slider.module.css';
 
 const Slider = ({ mediaItems }) => {
@@ -20,8 +20,7 @@ const Slider = ({ mediaItems }) => {
     const timer = setTimeout(() => {
       setPlayTrailer(true);
       setIsPlaying(true);
-    // }, SLIDER.SWITCH_TO_VIDEO_DURATION || 5000);
-    }, 500000);
+    }, SLIDER.SWITCH_TO_VIDEO_DURATION);
 
     return () => {
       clearTimeout(timer);

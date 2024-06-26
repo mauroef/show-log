@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import { getMostVotedMovies } from '@/utils/api';
 import { withDetailUrl, withGenre } from '@/utils/dataTransformation';
 import { MEDIA_TYPE } from '@/utils/constants';
-// import { Carousel } from '@/components';
 import { ShelfGrid } from '@/components';
 
 const MostVotedMovies = async () => {
@@ -17,14 +16,7 @@ const MostVotedMovies = async () => {
   };
 
   return (
-    // <Carousel
-    //   headline='Most voted Movies'
-    //   mediaItems={movies}
-    //   hasGenre={true}
-    //   hasDescription={true}
-    //   hasTitle={true}
-    // />
-    <Suspense>
+    <Suspense fallback={<p>loading</p>}>
       <ShelfGrid
         headline='Most voted Movies'
         media={movies}

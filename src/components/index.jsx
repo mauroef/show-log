@@ -1,13 +1,9 @@
-// layout
-export { default as MainLayout } from './layout/MainLayout';
-export { default as DetailHeader } from './layout/DetailHeader';
-
 // common
 export { default as Header } from './common/Header';
 
-// ui
-export { default as Divider } from './ui/Divider';
-export { default as Pie } from './ui/Pie';
+// layout
+export { default as MainLayout } from './layout/MainLayout';
+export { default as DetailHeader } from './layout/DetailHeader';
 
 // movie
 export { default as MostVotedMovies } from './movie/MostVotedMovies';
@@ -21,8 +17,9 @@ export { default as PopularShows } from './show/PopularShows';
 // slider
 export { default as Slider } from './slider/Slider';
 
-// carousel
-export { default as Carousel } from './carousel/Carousel';
-
 // shelf
 export { default as ShelfGrid } from './shelf/ShelfGrid';
+
+// ui
+export { default as Divider } from './ui/Divider';
+export { default as Pie } from './ui/Pie';
