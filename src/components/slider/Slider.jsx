@@ -5,14 +5,21 @@ import { default as SlickSlider } from 'react-slick';
 import { motion } from 'framer-motion';
 import useIsMobile from '@/hooks/useIsMobile';
 import { SLIDER } from '@/utils/constants';
-import Slide from './SliderItem';
+import SliderItem from './SliderItem';
 import styles from './slider.module.css';
+
+const Skeleton = ({ className }) => (
+  <div
+    className={`animate-pulse bg-neutral-600 w-full aspect-[1280/1920] md:aspect-[1280/720] 2xl:rounded-b-2xl ${className}`}
+  ></div>
+);
 
 const Slider = ({ mediaItems }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [playTrailer, setPlayTrailer] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
   const isMobile = useIsMobile();
   const sliderRef = useRef(null);
 
@@ -43,6 +50,9 @@ const Slider = ({ mediaItems }) => {
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
+    onInit: () => {
+      setIsLoaded(true);
+    },
     beforeChange: (oldIndex, newIndex) => {
       setCurrentSlide(newIndex);
       setPlayTrailer(false);
@@ -68,22 +78,29 @@ const Slider = ({ mediaItems }) => {
   };
 
   return (
-    <SlickSlider ref={sliderRef} {...settings} className={styles.slider}>
-      {mediaItems.map((item, index) => (
-        <Slide
-          key={item.id}
-          item={item}
-          isMobile={isMobile}
-          isCurrent={currentSlide === index}
-          playTrailer={playTrailer}
-          isPlaying={isPlaying}
-          isMuted={isMuted}
-          onVideoEnd={handleVideoEnd}
-          togglePlayPause={() => setIsPlaying((prev) => !prev)}
-          toggleMute={() => setIsMuted((prev) => !prev)}
-        />
-      ))}
-    </SlickSlider>
+    <>
+      {!isLoaded && <Skeleton />}
+      <SlickSlider
+        ref={sliderRef}
+        {...settings}
+        className={`${styles.slider} ${isLoaded ? 'block' : 'hidden'}`}
+      >
+        {mediaItems.map((item, index) => (
+          <SliderItem
+            key={item.id}
+            item={item}
+            isMobile={isMobile}
+            isCurrent={currentSlide === index}
+            playTrailer={playTrailer}
+            isPlaying={isPlaying}
+            isMuted={isMuted}
+            onVideoEnd={handleVideoEnd}
+            togglePlayPause={() => setIsPlaying((prev) => !prev)}
+            toggleMute={() => setIsMuted((prev) => !prev)}
+          />
+        ))}
+      </SlickSlider>
+    </>
   );
 };
 

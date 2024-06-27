@@ -19,7 +19,7 @@ const NavLink = ({ href, children }) => {
 
 const Header = () => {
   return (
-    <header className='bg-black text-white/90 h-13 py-3.5 px-6 md:px-12 sticky text-center top-0 z-10'>
+    <header className='bg-black text-white/90 h-13 py-3.5 px-6 md:px-12 sticky text-center top-0 z-40'>
       <nav className='flex justify-between 2xl:container 2xl:mx-auto 2xl:px-12'>
         <div className='flex space-x-2'>
           <Link href='/' className='font-bold uppercase'>
