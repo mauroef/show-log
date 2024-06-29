@@ -2,7 +2,6 @@ import ReactPlayer from 'react-player';
 import { motion } from 'framer-motion';
 import Controls from './Controls';
 import { VIDEO_URLS } from '@/utils/constants';
-import styles from './slider.module.css';
 
 const VideoPlayer = ({
   item,
@@ -16,10 +15,10 @@ const VideoPlayer = ({
     initial={{ opacity: 0, scale: 0.95 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.5 }}
-    className={styles['video-wrapper']}
+    className={`relative top-0 left-0 2xl:rounded-b-2xl aspect-[1280/1920] md:aspect-[1280/720]`}
   >
     <ReactPlayer
-      className={styles['react-player']}
+      className='pointer-events-none'
       controls={false}
       height='100%'
       muted={isMuted}

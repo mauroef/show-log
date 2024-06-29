@@ -2,20 +2,20 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { IMAGE_URLS } from '@/utils/constants';
 import VideoPlayer from './VideoPlayer';
-import styles from './slider.module.css';
 
 const SliderItem = ({
-  item,
-  isMobile,
+  index,
   isCurrent,
-  playTrailer,
-  isPlaying,
+  isMobile,
   isMuted,
+  isPlaying,
+  item,
   onVideoEnd,
-  togglePlayPause,
+  playTrailer,
   toggleMute,
+  togglePlayPause,
 }) => (
-  <motion.div className={`${styles['player-wrapper']} 2xl:rounded-b-2xl`}>
+  <motion.div>
     <motion.div
       initial={{ opacity: 1, scale: 1 }}
       animate={{
@@ -23,21 +23,27 @@ const SliderItem = ({
         scale: playTrailer && isCurrent ? 1.3 : 1,
       }}
       transition={{ duration: 0.5 }}
-      className={`${styles['image-wrapper']} 2xl:rounded-b-2xl`}
+      className={`relative ${playTrailer && isCurrent ? 'hidden' : 'block'} ${
+        isMobile ? 'aspect-[1280/1920]' : 'aspect-[1280/720]'
+      }`}
     >
       <Image
         alt={item.title}
-        className={styles['player-image']}
-        fill
+        className={`mask-gradient absolute w-full h-auto ${
+          isMobile ? 'aspect-[1280/1920]' : 'aspect-[1280/720]'
+        }`}
+        height={isMobile ? 1920 : 720}
+        priority={index === 0}
         src={`${IMAGE_URLS.BASE_LEAD}${
           isMobile ? item.image.portrait : item.image.landscape
         }`}
+        width={1280}
       />
       {!isMobile && (
         <div>
-          <div className='absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent 2xl:rounded-b-2xl'></div>
-          <div className='absolute bottom-14 left-12 leading-normal max-w-2xl'>
-            <h2 className='text-white text-6xl'>{item.title || ''}</h2>
+          <div className='absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent '></div>
+          <div className='absolute bottom-14 left-12 leading-normal max-w-2xl '>
+            <h2 className='text-white text-6xl'>{item.title}</h2>
           </div>
         </div>
       )}

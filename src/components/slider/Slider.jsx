@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import useIsMobile from '@/hooks/useIsMobile';
 import { SLIDER } from '@/utils/constants';
 import SliderItem from './SliderItem';
-import styles from './slider.module.css';
 
 const Skeleton = ({ className }) => (
   <div
@@ -46,7 +45,6 @@ const Slider = ({ mediaItems }) => {
     arrows: false,
     dots: true,
     infinite: false,
-    lazyLoad: true,
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -72,7 +70,7 @@ const Slider = ({ mediaItems }) => {
           opacity: currentSlide === i ? 1 : 0.5,
         }}
         transition={{ duration: 0.3 }}
-        className={styles['custom-dot']}
+        className='bg-white rounded-full block h-[10px] w-[10px] opacity-50'
       />
     ),
   };
@@ -83,20 +81,23 @@ const Slider = ({ mediaItems }) => {
       <SlickSlider
         ref={sliderRef}
         {...settings}
-        className={`${styles.slider} ${isLoaded ? 'block' : 'hidden'}`}
+        className={`aspect-[1280/1920] md:aspect-[1280/720] ${
+          isLoaded ? 'block' : 'hidden'
+        } `}
       >
         {mediaItems.map((item, index) => (
           <SliderItem
-            key={item.id}
-            item={item}
-            isMobile={isMobile}
             isCurrent={currentSlide === index}
-            playTrailer={playTrailer}
-            isPlaying={isPlaying}
+            isMobile={isMobile}
             isMuted={isMuted}
+            isPlaying={isPlaying}
+            item={item}
+            index={index}
+            key={item.id}
             onVideoEnd={handleVideoEnd}
-            togglePlayPause={() => setIsPlaying((prev) => !prev)}
+            playTrailer={playTrailer}
             toggleMute={() => setIsMuted((prev) => !prev)}
+            togglePlayPause={() => setIsPlaying((prev) => !prev)}
           />
         ))}
       </SlickSlider>

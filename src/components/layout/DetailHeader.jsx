@@ -24,7 +24,7 @@ const DetailHeader = ({ average, landscape, overview, portrait, title }) => {
           height={1920}
           className={`w-full block md:hidden ${
             isPortraitLoaded ? '' : 'hidden'
-          }`}
+          } mask-gradient`}
           src={`${IMAGE_URLS.BASE_LEAD}${portrait}`}
           priority
           onLoad={() => setIsPortraitLoaded(true)}
@@ -39,7 +39,7 @@ const DetailHeader = ({ average, landscape, overview, portrait, title }) => {
           priority
           onLoad={() => setIsLandscapeLoaded(true)}
         />
-        <div className='absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent 2xl:rounded-b-2xl'></div>
+        <div className='hidden md:block absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent 2xl:rounded-b-2xl'></div>
       </div>
       <div
         className='absolute bottom-10 left-12 leading-normal max-w-2xl flex hidden md:block'
