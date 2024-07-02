@@ -40,6 +40,21 @@ export const getMovieById = async (id) => {
   }
 };
 
+export const getMoviesByProvider = async (providerId) => {
+  const queryParams = `?with_watch_providers=${providerId}&watch_region=AR`;
+
+  try {
+    const response = await fetch(
+      `${API.BASE_URL}discover/movie${queryParams}`,
+      OPTIONS
+    );
+
+    return await handleResponse(response).then((data) => data.results);
+  } catch (error) {
+    return handleFetchError(error, `show video id: ${id}`, null);
+  }
+};
+
 export const getMovieVideosById = async (id) => {
   try {
     const response = await fetch(`${API.BASE_URL}movie/${id}/videos`, OPTIONS);

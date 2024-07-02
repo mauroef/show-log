@@ -55,7 +55,7 @@ export const getShowById = async (id) => {
   }
 };
 
-export const getShowByProvider = async (providerId) => {
+export const getShowsByProvider = async (providerId) => {
   const queryParams = `?with_watch_providers=${providerId}&watch_region=AR`;
 
   try {

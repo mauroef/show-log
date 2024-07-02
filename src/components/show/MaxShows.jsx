@@ -1,11 +1,11 @@
-import { getShowByProvider } from '@/utils/api';
+import { getShowsByProvider } from '@/utils/api';
 import { WATCH_PROVIDERS } from '@/utils/constants';
 import { withDetailUrl, withTitle } from '@/utils/dataTransformation';
 import { MEDIA_TYPE } from '@/utils/constants';
 import { ShelfGrid } from '@/components';
 
 const MaxShows = async () => {
-  const shows = await getShowByProvider(WATCH_PROVIDERS.Max.id)
+  const shows = await getShowsByProvider(WATCH_PROVIDERS.Max.id)
     .then((s) => withTitle(s))
     .then((s) => withDetailUrl(MEDIA_TYPE.SHOW, s));
 

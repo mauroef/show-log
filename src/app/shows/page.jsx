@@ -26,6 +26,7 @@ const ShowsPage = () => {
       <AppleTvPlusShows />
       <Divider />
       <ParamountPlusShows />
+      <Divider />
       <CrunchyrollShows />
     </MainLayout>
   );

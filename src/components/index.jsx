@@ -6,9 +6,17 @@ export { default as MainLayout } from './layout/MainLayout';
 export { default as DetailHeader } from './layout/DetailHeader';
 
 // movie
+export { default as AmazonPrimeVideoMovies } from './movie/AmazonPrimeVideoMovies';
+export { default as AppleTvPlusMovies } from './movie/AppleTvPlusMovies';
+export { default as CrunchyrollMovies } from './movie/CrunchyrollMovies';
+export { default as DisneyPlusMovies } from './movie/DisneyPlusMovies';
+export { default as MaxMovies } from './movie/MaxMovies';
 export { default as MostVotedMovies } from './movie/MostVotedMovies';
+export { default as NetflixMovies } from './movie/NetflixMovies';
+export { default as ParamountPlusMovies } from './movie/ParamountPlusMovies';
 export { default as PopularMovies } from './movie/PopularMovies';
 export { default as UpcomingMovies } from './movie/UpcomingMovies';
+
 
 // show
 export { default as AmazonPrimeVideoShows } from './show/AmazonPrimeVideoShows';

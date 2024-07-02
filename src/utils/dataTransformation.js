@@ -60,6 +60,7 @@ export const withGenre = async (type, media) => {
 };
 
 export const withTitle = (media) => {
+  console.log('t ->', media.title);
   let mediaWithTitle = media;
 
   if (!media.title) {
