@@ -9,7 +9,7 @@ import SliderItem from './SliderItem';
 
 const Skeleton = ({ className }) => (
   <div
-    className={`animate-pulse bg-neutral-600 w-full aspect-[1280/1920] md:aspect-[1280/720] 2xl:rounded-b-2xl ${className}`}
+    className={`animate-pulse bg-neutral-600 w-full aspect-[2/3] md:aspect-[16/9] 2xl:rounded-b-2xl ${className}`}
   ></div>
 );
 
@@ -81,7 +81,7 @@ const Slider = ({ mediaItems }) => {
       <SlickSlider
         ref={sliderRef}
         {...settings}
-        className={`aspect-[1280/1920] md:aspect-[1280/720] ${
+        className={`aspect-[2/3] md:aspect-[16/9] ${
           isLoaded ? 'block' : 'hidden'
         } `}
       >

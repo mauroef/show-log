@@ -15,7 +15,7 @@ const VideoPlayer = ({
     initial={{ opacity: 0, scale: 0.95 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.5 }}
-    className={`relative top-0 left-0 2xl:rounded-b-2xl aspect-[1280/1920] md:aspect-[1280/720]`}
+    className={`bg-black relative top-0 left-0 2xl:rounded-b-2xl aspect-[2/3] md:aspect-[1280/720]`}
   >
     <ReactPlayer
       className='pointer-events-none'

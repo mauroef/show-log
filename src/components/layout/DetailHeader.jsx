@@ -6,8 +6,10 @@ import { motion } from 'framer-motion';
 import { IMAGE_URLS } from '@/utils/constants';
 import { Pie } from '@/components';
 
-const Skeleton = ({className}) => (
-  <div className={`animate-pulse bg-neutral-600 w-full aspect-[1280/1920] md:aspect-[1280/720] 2xl:rounded-b-2xl ${className}`}></div>
+const Skeleton = ({ className }) => (
+  <div
+    className={`animate-pulse bg-neutral-600 w-full aspect-[2/3] md:aspect-[16/9] 2xl:rounded-b-2xl ${className}`}
+  ></div>
 );
 
 const DetailHeader = ({ average, landscape, overview, portrait, title }) => {
@@ -34,7 +36,9 @@ const DetailHeader = ({ average, landscape, overview, portrait, title }) => {
           alt={title}
           width={1280}
           height={720}
-          className={`2xl:rounded-b-2xl w-full hidden ${isLandscapeLoaded ? 'md:block' : 'md:hidden'}`}
+          className={`2xl:rounded-b-2xl w-full hidden ${
+            isLandscapeLoaded ? 'md:block' : 'md:hidden'
+          }`}
           src={`${IMAGE_URLS.BASE_LEAD}${landscape}`}
           priority
           onLoad={() => setIsLandscapeLoaded(true)}
@@ -52,7 +56,7 @@ const DetailHeader = ({ average, landscape, overview, portrait, title }) => {
             transition={{ duration: 1, delay: 0.5 }}
             className='text-white text-6xl self-center'
           >
-            {title || ''}
+            {title}
           </motion.h1>
           <div
             className='p-2 rounded-lg'
