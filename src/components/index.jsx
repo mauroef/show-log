@@ -1,5 +1,5 @@
 // common
-export { default as Header } from './common/Header';
+export { default as Header } from './common/Header/Header';
 
 // layout
 export { default as MainLayout } from './layout/MainLayout';
