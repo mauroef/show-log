@@ -40,7 +40,7 @@ const Header = () => {
           <NavLink href='/movies'>Movies</NavLink>
           <NavLink href='/shows'>Shows</NavLink>
         </div>
-        <div className='flex'>
+        <div className='flex space-x-2'>
           <IoSearch size={24} />
           <HamburgerButton onClick={handleMenu} isOpen={isMenuOpen} />
         </div>

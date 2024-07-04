@@ -1,97 +1,26 @@
-import { motion, Transition, SVGMotionProps } from 'framer-motion';
-
-const HamburgerButton = ({
-  isOpen = false,
-  width = 24,
-  height = 24,
-  strokeWidth = 2,
-  color = '#fff',
-  transition = null,
-  lineProps = null,
-  onClick
-}) => {
-  const variant = isOpen ? 'opened' : 'closed';
-  const top = {
-    closed: {
-      rotate: 0,
-      translateY: 0,
-    },
-    opened: {
-      rotate: 45,
-      translateY: 2,
-    },
-  };
-  const center = {
-    closed: {
-      opacity: 1,
-    },
-    opened: {
-      opacity: 0,
-    },
-  };
-  const bottom = {
-    closed: {
-      rotate: 0,
-      translateY: 0,
-    },
-    opened: {
-      rotate: -45,
-      translateY: -2,
-    },
-  };
-  lineProps = {
-    stroke: color,
-    strokeWidth: strokeWidth,
-    vectorEffect: 'non-scaling-stroke',
-    initial: 'closed',
-    animate: variant,
-    transition,
-    ...lineProps,
-  };
-
-  const unitHeight = 4;
-  const unitWidth = (unitHeight * width) / height;
-
-  return (
-    <button
-      onClick={onClick}
-      aria-label={isOpen ? 'Close menu' : 'Open menu'}
-      aria-expanded={isOpen}
-    >
-      <motion.svg
-        viewBox={`0 0 ${unitWidth} ${unitHeight}`}
-        overflow='visible'
-        preserveAspectRatio='none'
-        width={width}
-        height={height}
-      >
-        <motion.line
-          x1='0'
-          x2={unitWidth}
-          y1='0'
-          y2='0'
-          variants={top}
-          {...lineProps}
-        />
-        <motion.line
-          x1='0'
-          x2={unitWidth}
-          y1='2'
-          y2='2'
-          variants={center}
-          {...lineProps}
-        />
-        <motion.line
-          x1='0'
-          x2={unitWidth}
-          y1='4'
-          y2='4'
-          variants={bottom}
-          {...lineProps}
-        />
-      </motion.svg>
-    </button>
-  );
-};
+const HamburgerButton = ({ isOpen = false, onClick }) => (
+  <button
+    className='h-6 w-6 p-1 flex flex-col justify-between space-between transition-all duration-300 ease-in-out'
+    onClick={onClick}
+    aria-label={isOpen ? 'Close menu' : 'Open menu'}
+    aria-expanded={isOpen}
+  >
+    <span
+      className={`block bg-white/90 h-0.5 w-full transform ${
+        isOpen ? 'translate-y-1.5 rotate-45' : 'translate-y-0 rotate-0'
+      } transition-all duration-300 ease-in-out`}
+    ></span>
+    <span
+      className={`block bg-white/90 h-0.5 w-1/2 self-end ${
+        isOpen ? 'opacity-0' : 'opacity-1'
+      } transition-all duration-300 ease-in-out`}
+    ></span>
+    <span
+      className={`block bg-white/90 h-0.5 w-full transform ${
+        isOpen ? 'translate-y-[-8px] rotate-[-45deg]' : 'translate-y-0 rotate-0'
+      } transition-all duration-300 ease-in-out`}
+    ></span>
+  </button>
+);
 
 export default HamburgerButton;
