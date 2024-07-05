@@ -1,11 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { IoSearch } from 'react-icons/io5';
 import { PROJECT_NAME } from '@/utils/constants';
+import SearchButton from './SearchButton';
 import HamburgerButton from './HamburgerButton';
 
 const NavLink = ({ href, children }) => {
@@ -41,7 +40,7 @@ const Header = () => {
           <NavLink href='/shows'>Shows</NavLink>
         </div>
         <div className='flex space-x-2'>
-          <IoSearch size={24} />
+          <SearchButton onClick={handleMenu} isOpen={isMenuOpen} />
           <HamburgerButton onClick={handleMenu} isOpen={isMenuOpen} />
         </div>
       </nav>
