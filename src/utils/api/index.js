@@ -1,5 +1,7 @@
+export * from './genres';
+
 export * from './movies';
 
-export * from './shows';
+export * from './search';
 
-export * from './genres';
+export * from './shows';

@@ -11,6 +11,20 @@ const handleDataError = (error, context) => {
   console.error(`Error processing ${context}:`, error);
 };
 
+export const transformSearchData = (data) => {
+  let transformedData = data;
+
+  try {
+    transformedData = data.filter((d) => {
+      return d.media_type !== 'person';
+    });
+  } catch (error) {
+    handleDataError(error, 'transformSearchData');
+  } finally {
+    return transformedData;
+  }
+};
+
 export const withDetailUrl = (type, media) => {
   let mediaWithUrl = media;
 
@@ -60,7 +74,6 @@ export const withGenre = async (type, media) => {
 };
 
 export const withTitle = (media) => {
-  console.log('t ->', media.title);
   let mediaWithTitle = media;
 
   if (!media.title) {

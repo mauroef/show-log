@@ -2,26 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { PROJECT_NAME } from '@/utils/constants';
+import { Navigation } from '@/components/';
+import SearchBar from './SearchBar';
 import SearchButton from './SearchButton';
 import HamburgerButton from './HamburgerButton';
 import { motion } from 'framer-motion';
-
-const NavLink = ({ href, children }) => {
-  const path = usePathname();
-
-  return (
-    <Link
-      href={href}
-      className={`${
-        path.startsWith(href) ? 'text-white/60 active' : ''
-      } hover:text-white/60 transition duration-300`}
-    >
-      {children}
-    </Link>
-  );
-};
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,8 +24,7 @@ const Header = () => {
             <Link href='/' className='font-bold uppercase'>
               {PROJECT_NAME}
             </Link>
-            <NavLink href='/movies'>Movies</NavLink>
-            <NavLink href='/shows'>Shows</NavLink>
+            <Navigation className={'hidden md:block'}/>
           </div>
           <div className='flex space-x-2'>
             <SearchButton onClick={handleMenu} isOpen={isMenuOpen} />
@@ -60,17 +45,10 @@ const Header = () => {
         initial={{ maxHeight: 0 }}
         animate={{ maxHeight: isMenuOpen ? '100dvh' : 0 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className={`bg-black fixed h-dvh md:h-64 w-full overflow-hidden ${
-          isMenuOpen ? 'z-40' : 'z-0'
-        }`}
+        className={`bg-black fixed h-dvh md:h-64 w-full overflow-hidden z-40`}
       >
-        <div className='p-6 md:px-12 2xl:container 2xl:mx-auto'>
-          <input
-            type='search'
-            placeholder='Search for a movie or show...'
-            class='bg-transparent text-2xl text-white/70 w-full border-b-2 border-white/70 focus:outline-none'
-          />
-        </div>
+        <SearchBar/>
+        <Navigation className={'block md:hidden'}/>
       </motion.div>
     </>
   );

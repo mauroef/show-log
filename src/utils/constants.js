@@ -1,5 +1,6 @@
 const API = {
   AUTH_KEY: process.env.TMDB_AUTH_KEY,
+  AUTH_KEY_PUBLIC: process.env.NEXT_PUBLIC_TMDB_AUTH_KEY,
   BASE_URL: 'https://api.themoviedb.org/3/',
 };
 

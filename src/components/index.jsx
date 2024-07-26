@@ -1,5 +1,6 @@
 // common
 export { default as Header } from './common/header/Header';
+export { default as Navigation } from './common/navigation/Navigation';
 export { default as Footer } from './common/footer/Footer';
 
 // detail
