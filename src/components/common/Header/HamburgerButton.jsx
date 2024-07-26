@@ -1,6 +1,6 @@
 const HamburgerButton = ({ isOpen = false, onClick }) => (
   <button
-    className='h-6 w-6 p-1 flex flex-col justify-between space-between transition-all duration-300 ease-in-out flex md:hidden'
+    className='h-6 w-6 p-1 flex flex-col justify-between space-between transition-all duration-300 ease-in-out flex md:hidden hover:opacity-60'
     onClick={onClick}
     aria-label={isOpen ? 'Close menu' : 'Open menu'}
     aria-expanded={isOpen}

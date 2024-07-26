@@ -51,8 +51,8 @@ const Header = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: isMenuOpen ? 1 : 0 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className={`backdrop-blur-sm bg-neutral-700/70 fixed h-dvh w-full overflow-hidden ${
-          isMenuOpen ? 'z-40' : ''
+        className={`hover:cursor-pointer backdrop-blur-sm bg-neutral-700/70 fixed h-dvh w-full overflow-hidden ${
+          isMenuOpen ? 'z-40' : 'z-0'
         }`}
         onClick={handleMenu}
       />
@@ -60,13 +60,15 @@ const Header = () => {
         initial={{ maxHeight: 0 }}
         animate={{ maxHeight: isMenuOpen ? '100dvh' : 0 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className='bg-black fixed h-dvh md:h-32 w-full overflow-hidden z-40'
+        className={`bg-black fixed h-dvh md:h-64 w-full overflow-hidden ${
+          isMenuOpen ? 'z-40' : 'z-0'
+        }`}
       >
-        <div className='p-6 md:px-12'>
+        <div className='p-6 md:px-12 2xl:container 2xl:mx-auto'>
           <input
             type='search'
             placeholder='Search for a movie or show...'
-            class='bg-transparent text-2xl text-white/70 w-full border-b-2 border-white/70 focus-visible:none'
+            class='bg-transparent text-2xl text-white/70 w-full border-b-2 border-white/70 focus:outline-none'
           />
         </div>
       </motion.div>

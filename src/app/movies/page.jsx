@@ -6,7 +6,6 @@ import {
   AmazonPrimeVideoMovies,
   AppleTvPlusMovies,
   DisneyPlusMovies,
-  MaxMovies,
   ParamountPlusMovies,
   MaxShows,
   CrunchyrollMovies,

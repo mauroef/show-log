@@ -49,7 +49,9 @@ const SliderItem = ({
             transition={{ duration: 1, delay: 0.5 }}
             style={{ minWidth: 'calc(100% - 96px)' }}
           >
-            <a href={item.url}>{item.title}</a>
+            <a href={item.url} className='hover:underline'>
+              {item.title}
+            </a>
           </motion.h2>
         </div>
       )}
