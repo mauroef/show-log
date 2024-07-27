@@ -5,7 +5,7 @@ import { getMultiSearchResults } from '@/utils/api';
 import { transformSearchData, withTitle } from '@/utils/dataTransformation';
 import SearchItem from './SearchItem';
 
-const SearchBar = ({inputRef}) => {
+const SearchBar = ({ inputRef }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState(null);
   const [hasResults, setHasResults] = useState(true);
@@ -77,7 +77,14 @@ const SearchBar = ({inputRef}) => {
 
   return (
     <div className='p-6 md:px-12 2xl:container 2xl:mx-auto flex flex-col gap-6'>
-      <form autoComplete='off' className='relative flex items-center'>
+      <form
+        autoComplete='off'
+        className='relative flex items-center'
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSearch(query);
+        }}
+      >
         <label htmlFor='search' className='sr-only'>
           Search
         </label>
@@ -94,6 +101,7 @@ const SearchBar = ({inputRef}) => {
           <button
             className='absolute right-0 bg-neutral-600 rounded-full hover:pointer hover:bg-neutral-400'
             onClick={clearSearch}
+            type='button'
           >
             <IoClose size={24} />
           </button>

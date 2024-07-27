@@ -2,20 +2,24 @@
 
 import { useRef, useState } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { PROJECT_NAME } from '@/utils/constants';
 import { Navigation } from '@/components/';
 import SearchBar from './SearchBar';
 import SearchButton from './SearchButton';
 import HamburgerButton from './HamburgerButton';
-import { motion } from 'framer-motion';
+import useIsMobile from '@/hooks/useIsMobile';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const inputRef = useRef(null);
+  const isMobile = useIsMobile();
 
   const handleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    focusInput();
+    if (!isMobile) {
+      focusInput();
+    }
   };
 
   const focusInput = () => {
@@ -30,10 +34,10 @@ const Header = () => {
             <Link href='/' className='font-bold uppercase'>
               {PROJECT_NAME}
             </Link>
-            <Navigation className={'hidden md:block'}/>
+            <Navigation className={'hidden md:block'} />
           </div>
           <div className='flex space-x-2'>
-            <SearchButton onClick={handleMenu} isOpen={isMenuOpen}/>
+            <SearchButton onClick={handleMenu} isOpen={isMenuOpen} />
             <HamburgerButton onClick={handleMenu} isOpen={isMenuOpen} />
           </div>
         </nav>
@@ -53,8 +57,8 @@ const Header = () => {
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className={`bg-black fixed h-dvh md:h-96 w-full overflow-hidden z-40`}
       >
-        <SearchBar inputRef={inputRef}/>
-        <Navigation className={'block md:hidden'}/>
+        <SearchBar inputRef={inputRef} />
+        <Navigation className={'block md:hidden'} />
       </motion.div>
     </>
   );
