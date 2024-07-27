@@ -45,7 +45,7 @@ const Header = () => {
         initial={{ maxHeight: 0 }}
         animate={{ maxHeight: isMenuOpen ? '100dvh' : 0 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className={`bg-black fixed h-dvh md:h-64 w-full overflow-hidden z-40`}
+        className={`bg-black fixed h-dvh md:h-96 w-full overflow-hidden z-40`}
       >
         <SearchBar/>
         <Navigation className={'block md:hidden'}/>
