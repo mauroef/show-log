@@ -15,9 +15,30 @@ export const transformSearchData = (data) => {
   let transformedData = data;
 
   try {
-    transformedData = data.filter((d) => {
-      return d.media_type !== 'person';
-    });
+    const excludePerson = (data) =>
+      data.filter((d) => d.media_type !== 'person');
+    const excludInvalidImages = (data) => data.filter((d) => d.poster_path);
+    const mapTransformedData = (data) =>
+      data.map((d) => {
+        const newData = { ...d };
+
+        if (!newData.title) {
+          newData.title = newData.name || '';
+        }
+
+        if (newData.media_type === 'movie') {
+          newData.url = `/movies/${slug(newData.title)}-${newData.id}`;
+        } else if (newData.media_type === 'tv') {
+          newData.media_type = 'tv show';
+          newData.url = `/shows/${slug(newData.title)}-${newData.id}`;
+        }
+
+        return newData;
+      });
+
+    transformedData = mapTransformedData(
+      excludePerson(excludInvalidImages(data))
+    );
   } catch (error) {
     handleDataError(error, 'transformSearchData');
   } finally {

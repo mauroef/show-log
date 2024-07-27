@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { IoClose } from 'react-icons/io5';
 import { getMultiSearchResults } from '@/utils/api';
-import { IMAGE_URLS } from '@/utils/constants';
-import { transformSearchData } from '@/utils/dataTransformation';
+import { transformSearchData, withTitle } from '@/utils/dataTransformation';
+import SearchItem from './SearchItem';
 
-const SearchBar = () => {
+const SearchBar = ({inputRef}) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState(null);
   const [hasResults, setHasResults] = useState(true);
@@ -16,9 +17,8 @@ const SearchBar = () => {
       return;
     }
 
-    const results = await getMultiSearchResults(searchPhrase).then((s) =>
-      transformSearchData(s)
-    );
+    let results = await getMultiSearchResults(searchPhrase);
+    results = await transformSearchData(results);
 
     setResults(results);
 
@@ -61,29 +61,30 @@ const SearchBar = () => {
   if (hasResults && results && results.length > 0) {
     resultsContent = (
       <>
-        {results.map((result, index) => (
-          <div key={index} className='text-white/90'>
-            {result.title}
-            <img
-              width='50'
-              src={`${IMAGE_URLS.BASE_LEAD}${result.poster_path}`}
-              alt={result.title}
-            />
-          </div>
+        {results.map((resultItem, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+          >
+            <SearchItem data={resultItem} />
+          </motion.div>
         ))}
       </>
     );
   }
 
   return (
-    <div className='p-6 md:px-12 2xl:container 2xl:mx-auto'>
+    <div className='p-6 md:px-12 2xl:container 2xl:mx-auto flex flex-col gap-6'>
       <form autoComplete='off' className='relative flex items-center'>
         <label htmlFor='search' className='sr-only'>
           Search
         </label>
         <input
-          className='bg-transparent text-2xl text-white/80 w-full border-b-2 border-white/80 rounded-none focus:outline-none'
+          className='py-1 bg-transparent text-xl md:text-2xl text-white/80 w-full border-b-2 border-white/80 rounded-none focus:outline-none'
           id={'search'}
+          ref={inputRef}
           onChange={handleChange}
           placeholder='Search for a movie or tv show...'
           type='search'
@@ -98,7 +99,9 @@ const SearchBar = () => {
           </button>
         )}
       </form>
-      <div className='max-h-48 overflow-y-auto'>{resultsContent}</div>
+      <div className='max-h-[calc(100dvh-140px)] md:max-h-64 overflow-y-auto grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+        {resultsContent}
+      </div>
     </div>
   );
 };

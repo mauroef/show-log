@@ -69,7 +69,7 @@ const DetailHeader = ({ average, landscape, overview, portrait, title }) => {
           className='mt-4 p-4 rounded-lg'
           style={{ backdropFilter: 'blur(60px) saturate(200%)' }}
         >
-          <h2 className='text-gray-300'>{overview}</h2>
+          <h2 className='text-gray-300 md:text-xl'>{overview}</h2>
         </div>
       </div>
     </section>

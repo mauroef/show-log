@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { PROJECT_NAME } from '@/utils/constants';
 import { Navigation } from '@/components/';
@@ -11,9 +11,15 @@ import { motion } from 'framer-motion';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const inputRef = useRef(null);
 
   const handleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    focusInput();
+  };
+
+  const focusInput = () => {
+    inputRef.current.focus();
   };
 
   return (
@@ -27,7 +33,7 @@ const Header = () => {
             <Navigation className={'hidden md:block'}/>
           </div>
           <div className='flex space-x-2'>
-            <SearchButton onClick={handleMenu} isOpen={isMenuOpen} />
+            <SearchButton onClick={handleMenu} isOpen={isMenuOpen}/>
             <HamburgerButton onClick={handleMenu} isOpen={isMenuOpen} />
           </div>
         </nav>
@@ -47,7 +53,7 @@ const Header = () => {
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className={`bg-black fixed h-dvh md:h-96 w-full overflow-hidden z-40`}
       >
-        <SearchBar/>
+        <SearchBar inputRef={inputRef}/>
         <Navigation className={'block md:hidden'}/>
       </motion.div>
     </>
