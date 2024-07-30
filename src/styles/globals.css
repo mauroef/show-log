@@ -13,8 +13,20 @@
 body {
   background-color: var(--neutral-800);
 }
-body:has(header + div[style='opacity: 1;']) {
+
+body:has(header + div[style='opacity: 1; display: block;']) {
   overflow: hidden;
+}
+
+body:has(div.is-404) footer {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+header + div[style='opacity:0'],
+header + div[style='opacity: 0;'] {
+  display: none;
 }
 
 section > h3 + div > ul::-webkit-scrollbar {

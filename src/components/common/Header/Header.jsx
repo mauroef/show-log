@@ -43,8 +43,8 @@ const Header = () => {
         </nav>
       </header>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isMenuOpen ? 1 : 0 }}
+        initial={{ opacity: 0, display: 'none' }}
+        animate={{ opacity: isMenuOpen ? 1 : 0, display: isMenuOpen ? 'block' : 'none' }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className={`hover:cursor-pointer backdrop-blur-sm bg-neutral-700/70 fixed h-dvh w-full overflow-hidden ${
           isMenuOpen ? 'z-40' : 'z-0'
