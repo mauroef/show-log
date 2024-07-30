@@ -19,6 +19,7 @@ export { default as MostVotedMovies } from './movie/MostVotedMovies';
 export { default as NetflixMovies } from './movie/NetflixMovies';
 export { default as ParamountPlusMovies } from './movie/ParamountPlusMovies';
 export { default as PopularMovies } from './movie/PopularMovies';
+export { default as SimilarMovies } from './movie/RecommendationMovies';
 export { default as UpcomingMovies } from './movie/UpcomingMovies';
 
 // show

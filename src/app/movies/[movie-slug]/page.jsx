@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getMovieById } from '@/utils/api';
 import { extractIdFromSlug } from '@/utils/helpers';
-import { DetailHeader, MainLayout } from '@/components/';
+import { DetailHeader, MainLayout, SimilarMovies } from '@/components/';
 
 const MovieDetailsPage = async ({ params }) => {
   const id = extractIdFromSlug(params['movie-slug']);
@@ -10,6 +10,8 @@ const MovieDetailsPage = async ({ params }) => {
   if (!movie) {
     notFound();
   }
+
+  console.log(movie);
 
   return (
     <MainLayout>
@@ -20,6 +22,7 @@ const MovieDetailsPage = async ({ params }) => {
         portrait={movie.poster_path}
         title={movie.title}
       />
+      <SimilarMovies id={id}/>
     </MainLayout>
   );
 };

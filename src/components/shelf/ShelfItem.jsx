@@ -11,6 +11,14 @@ const Skeleton = () => (
 );
 
 const ShelfItem = ({ item, settings }) => {
+  let imageUrl = IMAGE_URLS.BASE_TEASER;
+
+  if (item.backdrop_path) {
+    imageUrl += item.backdrop_path;
+  } else {
+    imageUrl += item.image.landscape;
+  }
+
   return (
     <>
       <header>
@@ -23,7 +31,7 @@ const ShelfItem = ({ item, settings }) => {
             alt={item.title || `image_${item.id}`}
             className={`absolute rounded-xl shadow-xl w-full z-20`}
             height={141}
-            src={`${IMAGE_URLS.BASE_TEASER}${item.backdrop_path}`}
+            src={imageUrl}
             width={250}
           />
           <div className='absolute z-30 inset-0 bg-neutral-900/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl'></div>

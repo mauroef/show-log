@@ -80,6 +80,21 @@ export const getPopularMovies = async () => {
   }
 };
 
+export const getRecommendationsMovies = async (id) => {
+  const queryParams = '?language=en-US&page=1';
+
+  try {
+    const response = await fetch(
+      `${API.BASE_URL}movie/${id}/recommendations${queryParams}`,
+      OPTIONS
+    );
+
+    return await handleResponse(response).then((data) => data.results);
+  } catch (error) {
+    return handleFetchError(error, 'recommendation movies', []);
+  }
+};
+
 export const getUpcomingMovies = async () => {
   const queryParams = '?language=en-US&page=1';
 
