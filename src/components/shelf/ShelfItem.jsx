@@ -16,7 +16,7 @@ const ShelfItem = ({ item, settings }) => {
   if (item.backdrop_path) {
     imageUrl += item.backdrop_path;
   } else {
-    imageUrl += item.image.landscape;
+    imageUrl += item.image?.landscape;
   }
 
   return (

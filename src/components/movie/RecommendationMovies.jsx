@@ -14,8 +14,6 @@ const RecommendationMovies = async ({ id }) => {
     hasTitle: true,
   };
 
-  console.log('related', movies);
-
   return (
     <ShelfGrid
       headline={'Recommendations'}
