@@ -5,6 +5,7 @@ export { default as Footer } from './common/footer/Footer';
 
 // detail
 export { default as DetailHeader } from './detail/DetailHeader';
+export { default as Cast } from './detail/Cast';
 
 // layout
 export { default as MainLayout } from './layout/MainLayout';

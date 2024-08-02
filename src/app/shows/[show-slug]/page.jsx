@@ -1,11 +1,15 @@
 import { notFound } from 'next/navigation';
-import { getShowById } from '@/utils/api';
+import { getShowById, getShowCreditsById } from '@/utils/api';
 import { extractIdFromSlug } from '@/utils/helpers';
-import { DetailHeader, MainLayout } from '@/components/';
+import { Cast, DetailHeader, Divider, MainLayout } from '@/components/';
+import { transformCastData } from '@/utils/dataTransformation';
 
 const ShowDetailsPage = async ({ params }) => {
   const id = extractIdFromSlug(params['show-slug']);
   const show = await getShowById(id);
+
+  const credits = await getShowCreditsById(id);
+  const cast = transformCastData(credits);
 
   if (!show) {
     notFound();
@@ -20,6 +24,8 @@ const ShowDetailsPage = async ({ params }) => {
         portrait={show.poster_path}
         title={show.name}
       />
+      <Cast data={cast} />
+      <Divider />
     </MainLayout>
   );
 };

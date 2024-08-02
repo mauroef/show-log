@@ -7,7 +7,7 @@ import {
   AppleTvPlusMovies,
   DisneyPlusMovies,
   ParamountPlusMovies,
-  MaxShows,
+  MaxMovies,
   CrunchyrollMovies,
 } from '@/components/';
 
@@ -19,7 +19,7 @@ const MoviesPage = () => {
       <Divider />
       <AmazonPrimeVideoMovies />
       <Divider />
-      <MaxShows />
+      <MaxMovies />
       <Divider />
       <DisneyPlusMovies />
       <Divider />

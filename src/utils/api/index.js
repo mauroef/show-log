@@ -1,3 +1,5 @@
+export * from './credits';
+
 export * from './genres';
 
 export * from './movies';

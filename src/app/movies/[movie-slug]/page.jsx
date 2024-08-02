@@ -1,17 +1,19 @@
 import { notFound } from 'next/navigation';
-import { getMovieById } from '@/utils/api';
+import { getMovieById, getMovieCreditsById } from '@/utils/api';
 import { extractIdFromSlug } from '@/utils/helpers';
-import { DetailHeader, MainLayout, SimilarMovies } from '@/components/';
+import { Cast, DetailHeader, Divider, MainLayout, SimilarMovies } from '@/components/';
+import { transformCastData } from '@/utils/dataTransformation';
 
 const MovieDetailsPage = async ({ params }) => {
   const id = extractIdFromSlug(params['movie-slug']);
   const movie = await getMovieById(id);
 
+  const credits = await getMovieCreditsById(id);
+  const cast = transformCastData(credits);
+
   if (!movie) {
     notFound();
   }
-
-  console.log(movie);
 
   return (
     <MainLayout>
@@ -22,7 +24,9 @@ const MovieDetailsPage = async ({ params }) => {
         portrait={movie.poster_path}
         title={movie.title}
       />
-      <SimilarMovies id={id}/>
+      <SimilarMovies id={id} />
+      <Divider />
+      <Cast data={cast} />
     </MainLayout>
   );
 };

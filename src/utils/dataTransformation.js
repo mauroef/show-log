@@ -11,6 +11,20 @@ const handleDataError = (error, context) => {
   console.error(`Error processing ${context}:`, error);
 };
 
+export const transformCastData = (data) => {
+  let { cast } = data;
+
+  try {
+    cast = cast.filter(
+      (c) => c.known_for_department === 'Acting' && c.profile_path !== null
+    );
+  } catch (error) {
+    handleDataError(error, 'transformCastData');
+  } finally {
+    return cast;
+  }
+};
+
 export const transformSearchData = (data) => {
   let transformedData = data;
 

@@ -16,7 +16,7 @@ const RecommendationMovies = async ({ id }) => {
 
   return (
     <ShelfGrid
-      headline={'Recommendations'}
+      headline={'Similar movies'}
       media={movies}
       settings={settings}
     />

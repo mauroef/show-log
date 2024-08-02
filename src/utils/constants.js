@@ -6,6 +6,7 @@ const API = {
 const IMAGE_URLS = {
   BASE_TEASER: 'https://image.tmdb.org/t/p/w250_and_h141_face',
   BASE_LEAD: 'https://image.tmdb.org/t/p/w1280',
+  BASE_CAST: 'https://media.themoviedb.org/t/p/w600_and_h600_face'
 };
 
 const MEDIA_TYPE = {
