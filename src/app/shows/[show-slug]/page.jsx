@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getShowById, getShowCreditsById } from '@/utils/api';
 import { extractIdFromSlug } from '@/utils/helpers';
-import { Cast, DetailHeader, Divider, MainLayout } from '@/components/';
+import { Cast, DetailHeader, DetailBody, Divider, MainLayout } from '@/components/';
 import { transformCastData } from '@/utils/dataTransformation';
 
 const ShowDetailsPage = async ({ params }) => {
@@ -20,10 +20,12 @@ const ShowDetailsPage = async ({ params }) => {
       <DetailHeader
         average={Math.trunc(show.vote_average * 10)}
         landscape={show.backdrop_path}
-        overview={show.overview}
+        subheadline={show.tagline}
         portrait={show.poster_path}
-        title={show.name}
+        headline={show.name}
       />
+      <DetailBody media={show} />
+      <Divider />
       <Cast data={cast} />
       <Divider />
     </MainLayout>

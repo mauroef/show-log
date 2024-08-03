@@ -12,7 +12,13 @@ const Skeleton = ({ className }) => (
   ></div>
 );
 
-const DetailHeader = ({ average, landscape, overview, portrait, title }) => {
+const DetailHeader = ({
+  average,
+  headline,
+  landscape,
+  portrait,
+  subheadline,
+}) => {
   const [isPortraitLoaded, setIsPortraitLoaded] = useState(false);
   const [isLandscapeLoaded, setIsLandscapeLoaded] = useState(false);
 
@@ -21,7 +27,7 @@ const DetailHeader = ({ average, landscape, overview, portrait, title }) => {
       <div className='2xl:rounded-b-2xl w-full'>
         {!isPortraitLoaded && <Skeleton className='block md:hidden' />}
         <Image
-          alt={title}
+          alt={headline}
           width={1280}
           height={1920}
           className={`w-full block md:hidden ${
@@ -33,7 +39,7 @@ const DetailHeader = ({ average, landscape, overview, portrait, title }) => {
         />
         {!isLandscapeLoaded && <Skeleton className='hidden md:block' />}
         <Image
-          alt={title}
+          alt={headline}
           width={1280}
           height={720}
           className={`2xl:rounded-b-2xl w-full hidden ${
@@ -56,7 +62,7 @@ const DetailHeader = ({ average, landscape, overview, portrait, title }) => {
             transition={{ duration: 1, delay: 0.5 }}
             className='text-white text-6xl self-center'
           >
-            {title}
+            {headline}
           </motion.h1>
           <div
             className='p-2 rounded-lg'
@@ -65,12 +71,14 @@ const DetailHeader = ({ average, landscape, overview, portrait, title }) => {
             <Pie percentage={average} color={'white'} />
           </div>
         </header>
-        <div
-          className='mt-4 p-4 rounded-lg'
-          style={{ backdropFilter: 'blur(60px) saturate(200%)' }}
-        >
-          <h2 className='text-gray-300 md:text-xl'>{overview}</h2>
-        </div>
+        {subheadline !== '' && (
+          <div
+            className='mt-4 p-4 rounded-lg'
+            style={{ backdropFilter: 'blur(60px) saturate(200%)' }}
+          >
+            <h2 className='text-gray-300 md:text-xl'>{subheadline}</h2>
+          </div>
+        )}
       </div>
     </section>
   );
