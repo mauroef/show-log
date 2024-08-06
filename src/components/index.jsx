@@ -34,6 +34,7 @@ export { default as MostVotedShows } from './show/MostVotedShows';
 export { default as NetflixShows } from './show/NetflixShows';
 export { default as ParamountPlusShows } from './show/ParamountPlusShows';
 export { default as PopularShows } from './show/PopularShows';
+export { default as ShowSeasons } from './show/ShowSeasons';
 
 // slider
 export { default as Slider } from './slider/Slider';

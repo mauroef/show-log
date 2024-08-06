@@ -2,11 +2,18 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { SHELF } from '@/utils/constants';
-import ShelfItem from '@/components/shelf/ShelfItem';
 import ShelfCast from '@/components/shelf/ShelfCast';
+import ShelfItem from '@/components/shelf/ShelfItem';
+import ShelfPoster from '@/components/shelf/ShelfPoster';
 import Navigation from '@/components/shelf/Navigation';
 
-const ShelfGrid = ({ headline, isCast = false, media, settings }) => {
+const ShelfGrid = ({
+  headline,
+  isCast = false,
+  isPoster = false,
+  media,
+  settings,
+}) => {
   const sliderRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
@@ -53,10 +60,12 @@ const ShelfGrid = ({ headline, isCast = false, media, settings }) => {
     }
   };
 
-  let gridClasses = 'auto-cols-[200px] md:auto-cols-three lg:auto-cols-four 2xl:auto-cols-five';
+  let gridClasses =
+    'auto-cols-[200px] md:auto-cols-three lg:auto-cols-four 2xl:auto-cols-five';
 
   if (isCast) {
-    gridClasses = 'auto-cols-[150px] md:auto-cols-[200px] md:auto-cols-five lg:auto-cols-six xl:auto-cols-seven 2xl:auto-cols-eight';
+    gridClasses =
+      'auto-cols-[150px] md:auto-cols-[200px] md:auto-cols-five lg:auto-cols-six xl:auto-cols-seven 2xl:auto-cols-eight';
   }
 
   return (
@@ -69,9 +78,9 @@ const ShelfGrid = ({ headline, isCast = false, media, settings }) => {
         >
           {media.map((mediaItem) => (
             <li className='md:snap-start' key={mediaItem.id}>
-              {isCast ? (
-                <ShelfCast item={mediaItem}/>
-              ) : (
+              {isPoster && <ShelfPoster item={mediaItem} />}
+              {isCast && <ShelfCast item={mediaItem} />}
+              {!isPoster && !isCast && (
                 <ShelfItem item={mediaItem} settings={settings} />
               )}
             </li>

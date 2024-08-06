@@ -7,7 +7,7 @@ const SearchItem = ({ data }) => {
       href={data.url}
       className='relative p-4 bg-neutral-800 flex gap-3 items-center rounded-xl hover:opacity-70 transition-opacity duration-300'
     >
-      <div class='abosulute z-10 animate-pulse bg-neutral-600 aspect-[2/3] rounded-lg shadow-xl min-w-16'></div>
+      <div className='abosulute z-10 animate-pulse bg-neutral-600 aspect-[2/3] rounded-lg shadow-xl min-w-16'></div>
       <Image
         alt={data.title}
         height={1920}

@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 import { getShowById, getShowCreditsById } from '@/utils/api';
 import { extractIdFromSlug } from '@/utils/helpers';
-import { Cast, DetailHeader, DetailBody, Divider, MainLayout } from '@/components/';
-import { transformCastData } from '@/utils/dataTransformation';
+import { Cast, DetailHeader, DetailBody, Divider, MainLayout, ShowSeasons } from '@/components/';
+import { transformCastData, withTitle } from '@/utils/dataTransformation';
 
 const ShowDetailsPage = async ({ params }) => {
   const id = extractIdFromSlug(params['show-slug']);
@@ -11,9 +11,13 @@ const ShowDetailsPage = async ({ params }) => {
   const credits = await getShowCreditsById(id);
   const cast = transformCastData(credits);
 
+  const seasons = await withTitle(show.seasons);
+
   if (!show) {
     notFound();
   }
+
+  console.log('show ->', show);
 
   return (
     <MainLayout>
@@ -24,7 +28,9 @@ const ShowDetailsPage = async ({ params }) => {
         portrait={show.poster_path}
         headline={show.name}
       />
-      <DetailBody media={show} />
+      <DetailBody overview={show.overview} />
+      <Divider />
+      <ShowSeasons data={seasons}/>
       <Divider />
       <Cast data={cast} />
       <Divider />
