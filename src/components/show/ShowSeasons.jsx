@@ -9,7 +9,7 @@ const settings = {
 const ShowSeasons = ({ data }) => {
   return (
     <ShelfGrid
-      headline={`Seasons - ${data.length}`}
+      headline={`Seasons`}
       isPoster={true}
       media={data}
       settings={settings}

@@ -68,6 +68,10 @@ const ShelfGrid = ({
       'auto-cols-[150px] md:auto-cols-[200px] md:auto-cols-five lg:auto-cols-six xl:auto-cols-seven 2xl:auto-cols-eight';
   }
 
+  if (isPoster) {
+    gridClasses = 'auto-cols-[150px] md:auto-cols-six lg:auto-cols-seven 2xl:auto-cols-eight';
+  }
+
   return (
     <section className='md:px-6 relative'>
       <h3 className='text-2xl font-bold px-6 py-3 text-white/90'>{headline}</h3>

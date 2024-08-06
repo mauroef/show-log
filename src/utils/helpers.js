@@ -21,3 +21,11 @@ export const handleFetchError = (error, context, fallback = null) => {
 
   return fallback;
 };
+export const formatDate = (dateString) => {
+  const date = new Date(dateString);
+
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const formatter = new Intl.DateTimeFormat('en-US', options);
+
+  return formatter.format(date);
+};
