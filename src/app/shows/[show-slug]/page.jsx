@@ -17,8 +17,6 @@ const ShowDetailsPage = async ({ params }) => {
     notFound();
   }
 
-  console.log('show ->', show);
-
   return (
     <MainLayout>
       <DetailHeader
@@ -30,7 +28,7 @@ const ShowDetailsPage = async ({ params }) => {
       />
       <DetailBody overview={show.overview} />
       <Divider />
-      <ShowSeasons data={seasons}/>
+      <ShowSeasons data={seasons} showId={id}/>
       <Divider />
       <Cast data={cast} />
       <Divider />

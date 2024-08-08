@@ -14,7 +14,8 @@ body {
   background-color: var(--neutral-800);
 }
 
-body:has(header + div[style='opacity: 1; display: block;']) {
+body:has(header + div[style='opacity: 1; display: block;']),
+body:has(.modl) {
   overflow: hidden;
 }
 

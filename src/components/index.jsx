@@ -34,6 +34,7 @@ export { default as MostVotedShows } from './show/MostVotedShows';
 export { default as NetflixShows } from './show/NetflixShows';
 export { default as ParamountPlusShows } from './show/ParamountPlusShows';
 export { default as PopularShows } from './show/PopularShows';
+export { default as ShowChapters } from './show/ShowChapters';
 export { default as ShowSeasons } from './show/ShowSeasons';
 
 // slider
@@ -44,4 +45,5 @@ export { default as ShelfGrid } from './shelf/ShelfGrid';
 
 // ui
 export { default as Divider } from './ui/Divider';
+export { default as Modal } from './ui/Modal';
 export { default as Pie } from './ui/Pie';

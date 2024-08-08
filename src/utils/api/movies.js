@@ -9,6 +9,21 @@ const OPTIONS = {
   },
 };
 
+export const getSeasonsChapters = async (showId = 1396, seasonNumber = 3) => {
+  const queryParams = '?language=en-US';
+
+  try {
+    const response = await fetch(
+      `${API.BASE_URL}/tv/${showId}/season/${seasonNumber}${queryParams}`,
+      OPTIONS
+    );
+
+    return await handleResponse(response).then((data) => data.episodes);
+  } catch (error) {
+    return handleFetchError(error, 'season chapters', []);
+  }
+};
+
 export const getMostVotedMovies = async () => {
   const queryParams =
     '?include_adult=false&include_video=true&language=en-US&page=1&sort_by=vote_count.desc';

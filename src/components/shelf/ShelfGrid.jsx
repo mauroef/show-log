@@ -82,7 +82,7 @@ const ShelfGrid = ({
         >
           {media.map((mediaItem) => (
             <li className='md:snap-start' key={mediaItem.id}>
-              {isPoster && <ShelfPoster item={mediaItem} />}
+              {isPoster && <ShelfPoster showId={settings.showId || 0} item={mediaItem} />}
               {isCast && <ShelfCast item={mediaItem} />}
               {!isPoster && !isCast && (
                 <ShelfItem item={mediaItem} settings={settings} />

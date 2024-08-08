@@ -1,12 +1,13 @@
 import { ShelfGrid } from '@/components';
 
-const settings = {
-  hasGenre: false,
-  hasOverview: false,
-  hasTitle: true,
-};
+const ShowSeasons = ({ showId, data }) => {
+  const settings = {
+    hasGenre: false,
+    hasOverview: false,
+    hasTitle: true,
+    showId,
+  };
 
-const ShowSeasons = ({ data }) => {
   return (
     <ShelfGrid
       headline={`Seasons`}
